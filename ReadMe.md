@@ -1,3 +1,3 @@
 # SDLW
 
-TODO
+A wrapper of SDL library for Go language. 
