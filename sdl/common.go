@@ -38,22 +38,32 @@ var (
 	fnQuit          uintptr
 )
 
-// LoadLibrary loads the DLL library and its functions.
+// LoadLibrary loads the library and its functions.
 func LoadLibrary(dllFile string) (err error) {
+	err = loadLibrary(dllFile, &sdlDll, funcs)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// loadLibrary loads the DLL library and its functions.
+func loadLibrary(dllFile string, h *windows.Handle, funcMappings []FuncMapping) (err error) {
 	if len(dllFile) == 0 {
 		dllFile = SdlDll
 	}
 
 	fmt.Println(fmt.Sprintf("Loading library: %v.", dllFile))
-	sdlDll, err = windows.LoadLibrary(dllFile)
+	*h, err = windows.LoadLibrary(dllFile)
 	if err != nil {
 		return err
 	}
 
 	fmt.Printf("Loading functions: ")
-	for _, fm := range funcs {
+	for _, fm := range funcMappings {
 		fmt.Printf("[%s] ", fm.FunctionName)
-		*(fm.Fn), err = windows.GetProcAddress(sdlDll, DllFuncNamePrefix+fm.FunctionName)
+		*(fm.Fn), err = windows.GetProcAddress(*h, DllFuncNamePrefix+fm.FunctionName)
 		if err != nil {
 			return err
 		}
