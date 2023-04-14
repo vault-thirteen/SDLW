@@ -54,7 +54,7 @@ func QuitSubSystem(flags uint32) {
 // Uint32 SDL_WasInit(Uint32 flags);
 // https://wiki.libsdl.org/SDL2/SDL_WasInit
 func WasInit(flags uint32) error {
-	ret, _, callErr := syscall.SyscallN(fnQuitSubSystem, uintptr(flags))
+	ret, _, callErr := syscall.SyscallN(fnWasInit, uintptr(flags))
 	mustBeNoCallError(callErr)
 	return checkError(ret)
 }
