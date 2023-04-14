@@ -44,12 +44,13 @@ func LoadLibrary(dllFile string) (err error) {
 		dllFile = SdlDll
 	}
 
+	fmt.Println(fmt.Sprintf("Loading library: %v.", dllFile))
 	sdlDll, err = windows.LoadLibrary(dllFile)
 	if err != nil {
 		return err
 	}
 
-	fmt.Println("Loading functions.")
+	fmt.Printf("Loading functions: ")
 	for _, fm := range funcs {
 		fmt.Printf("[%s] ", fm.FunctionName)
 		*(fm.Fn), err = windows.GetProcAddress(sdlDll, DllFuncNamePrefix+fm.FunctionName)
