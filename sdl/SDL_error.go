@@ -1,22 +1,24 @@
 package sdl
 
-/*
-#include "include/SDL.h"
-*/
-import "C"
-import "errors"
+import (
+	"errors"
+	"syscall"
+	"unsafe"
+
+	"golang.org/x/sys/windows"
+)
 
 // GetError
 // const char* SDL_GetError(void);
 // https://wiki.libsdl.org/SDL2/SDL_GetError
 func GetError() (err error) {
-	e := C.SDL_GetError()
-	if err != nil {
-		s := C.GoString(e)
-		if len(s) > 0 {
-			return errors.New(s)
-		}
+	cpErrText, _, callErr := syscall.SyscallN(fnGetError)
+	mustBeNoCallError(callErr)
+
+	errText := windows.BytePtrToString((*byte)(unsafe.Pointer(cpErrText)))
+	if len(errText) == 0 {
+		return nil
 	}
 
-	return nil
+	return errors.New(errText)
 }

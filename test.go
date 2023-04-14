@@ -10,7 +10,14 @@ import (
 
 func main() {
 	var err error
+	err = sdl.LoadLibrary(sdl.SdlDll)
+	mustBeNoError(err)
+
 	err = work()
+	mustBeNoError(err)
+}
+
+func mustBeNoError(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
