@@ -35,31 +35,31 @@ crash.
     <tbody>
         <tr>
             <td align="center">&#9746;</td>
-            <td rowspan=6>Initialization and Shutdown</td><td>SDL_Init</td>
+            <td rowspan=6 valign="top">Initialization and Shutdown</td><td>SDL_Init</td>
             <td></td>
         </tr>
         <tr>
-            <td><ul><li>- [x]</li></ul></td>
+            <td align="center">&#9746;</td>
             <td>SDL_InitSubSystem</td>
             <td></td>
         </tr>
         <tr>
-            <td><ul><li>- [x]</li></ul></td>
+            <td align="center">&#9746;</td>
             <td>SDL_Quit</td>
             <td></td>
         </tr>
         <tr>
-            <td><ul><li>- [x]</li></ul></td>
+            <td align="center">&#9746;</td>
             <td>SDL_QuitSubSystem</td>
             <td></td>
         </tr>
         <tr>
-            <td><ul><li>- [x]</li></ul></td>
+            <td align="center">&#9746;</td>
             <td>SDL_SetMainReady</td>
             <td></td>
         </tr>
         <tr>
-            <td><ul><li>- [x]</li></ul></td>
+            <td align="center">&#9746;</td>
             <td>SDL_WasInit</td>
             <td></td>
         </tr>
