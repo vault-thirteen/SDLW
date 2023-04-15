@@ -34,7 +34,7 @@ crash.
     </thead>
     <tbody>
         <tr>
-            <td><ul><li>- [x]</li></ul></td>
+            <td align="center">&#9746;</td>
             <td rowspan=6>Initialization and Shutdown</td><td>SDL_Init</td>
             <td></td>
         </tr>
