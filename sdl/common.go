@@ -58,6 +58,11 @@ var funcs = []dll.FuncMapping{
 	{&fnGetAssertionHandler, "GetAssertionHandler"},
 	{&fnGetAssertionReport, "GetAssertionReport"},
 	{&fnResetAssertionReport, "ResetAssertionReport"},
+
+	// Querying SDL Version.
+	{&fnGetVersion, "GetVersion"},
+	{&fnGetRevision, "GetRevision"},
+	{&fnGetRevisionNumber, "GetRevisionNumber"},
 }
 
 var (
@@ -110,6 +115,11 @@ var (
 	fnGetAssertionHandler        uintptr
 	fnGetAssertionReport         uintptr
 	fnResetAssertionReport       uintptr
+
+	// Querying SDL Version.
+	fnGetVersion        uintptr
+	fnGetRevision       uintptr
+	fnGetRevisionNumber uintptr
 )
 
 // LoadLibrary loads the library and its functions.

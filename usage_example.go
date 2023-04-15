@@ -55,10 +55,14 @@ func work() (err error) {
 		return errors.New("errors do not work")
 	}
 
+	time.Sleep(time.Second * 1)
+
 	// Log Handling.
 	sdl.Log("Hello, World ! N=%d.", 123)
 
-	time.Sleep(time.Second * 1)
+	// Querying SDL Version.
+	fmt.Println(sdl.GetVersion())
+	fmt.Println(sdl.GetRevision())
 
 	return nil
 }

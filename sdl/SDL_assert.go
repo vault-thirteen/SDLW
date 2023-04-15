@@ -27,13 +27,13 @@ typedef struct SDL_AssertData
 */
 // SDL_assert.h
 type AssertData struct {
-	alwaysIgnore int
-	triggerCount uint
-	condition    *byte
-	filename     *byte
-	lineNum      int
-	function     *byte
-	next         *AssertData
+	AlwaysIgnore int
+	TriggerCount uint
+	Condition    *byte
+	Filename     *byte
+	LineNum      int
+	Function     *byte
+	Next         *AssertData
 }
 
 // AssertionHandler

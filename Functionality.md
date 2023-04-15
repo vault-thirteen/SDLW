@@ -214,5 +214,22 @@
             <td>SDL_ResetAssertionReport</td>
             <td></td>
         </tr>
+<!-- -->
+        <tr>
+            <td align="center">&#9746;</td>
+            <td rowspan=3 valign="top">Querying SDL Version</td>
+            <td>SDL_GetVersion</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_GetRevision</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_GetRevisionNumber</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
