@@ -2,8 +2,6 @@ package sdl
 
 import (
 	"syscall"
-
-	"github.com/vault-thirteen/SDLW/dll"
 )
 
 const (
@@ -24,8 +22,7 @@ const (
 // void SDL_SetMainReady(void);
 // https://wiki.libsdl.org/SDL2/SDL_SetMainReady
 func SetMainReady() {
-	_, _, callErr := syscall.SyscallN(fnSetMainReady)
-	dll.MustBeNoCallError(callErr)
+	_, _, _ = syscall.SyscallN(fnSetMainReady)
 }
 
 // Init
@@ -33,7 +30,6 @@ func SetMainReady() {
 // https://wiki.libsdl.org/SDL2/SDL_Init
 func Init(flags uint32) error {
 	ret, _, _ := syscall.SyscallN(fnInit, uintptr(flags))
-	//dll.MustBeNoCallError(callErr)
 	return checkError(ret)
 }
 
@@ -42,7 +38,6 @@ func Init(flags uint32) error {
 // https://wiki.libsdl.org/SDL2/SDL_InitSubSystem
 func InitSubSystem(flags uint32) error {
 	ret, _, _ := syscall.SyscallN(fnInitSubSystem, uintptr(flags))
-	//dll.MustBeNoCallError(callErr)
 	return checkError(ret)
 }
 
@@ -51,15 +46,13 @@ func InitSubSystem(flags uint32) error {
 // https://wiki.libsdl.org/SDL2/SDL_QuitSubSystem
 func QuitSubSystem(flags uint32) {
 	_, _, _ = syscall.SyscallN(fnQuitSubSystem, uintptr(flags))
-	//dll.MustBeNoCallError(callErr)
 }
 
 // WasInit
 // Uint32 SDL_WasInit(Uint32 flags);
 // https://wiki.libsdl.org/SDL2/SDL_WasInit
 func WasInit(flags uint32) (status uint32) {
-	ret, _, callErr := syscall.SyscallN(fnWasInit, uintptr(flags))
-	dll.MustBeNoCallError(callErr)
+	ret, _, _ := syscall.SyscallN(fnWasInit, uintptr(flags))
 	return uint32(ret)
 }
 
@@ -68,5 +61,4 @@ func WasInit(flags uint32) (status uint32) {
 // https://wiki.libsdl.org/SDL2/SDL_Quit
 func Quit() {
 	_, _, _ = syscall.SyscallN(fnQuit)
-	//dll.MustBeNoCallError(callErr)
 }

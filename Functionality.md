@@ -46,18 +46,48 @@
         </tr>
 <!-- -->
         <tr>
-            <td align="center">&#9744;</td>
-            <td rowspan=3 valign="top">Configuration Variables</td><td>SDL_SetHintWithPriority</td>
+            <td align="center">&#9746;</td>
+            <td rowspan=9 valign="top">Configuration Variables</td><td>SDL_SetHintWithPriority</td>
             <td></td>
         </tr>
         <tr>
-            <td align="center">&#9744;</td>
+            <td align="center">&#9746;</td>
+            <td>SDL_SetHint</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_ResetHint</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_ResetHints</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
             <td>SDL_GetHint</td>
             <td></td>
         </tr>
         <tr>
-            <td align="center">&#9744;</td>
-            <td>SDL_SetHint</td>
+            <td align="center">&#9746;</td>
+            <td>SDL_GetHintBoolean</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_AddHintCallback</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_DelHintCallback</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_ClearHints</td>
             <td></td>
         </tr>
 <!-- -->

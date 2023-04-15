@@ -20,7 +20,15 @@ var funcs = []dll.FuncMapping{
 	{&fnWasInit, "WasInit"},
 
 	// Configuration Variables.
-	// TODO
+	{&fnSetHintWithPriority, "SetHintWithPriority"},
+	{&fnSetHint, "SetHint"},
+	{&fnResetHint, "ResetHint"},
+	{&fnResetHints, "ResetHints"},
+	{&fnGetHint, "GetHint"},
+	{&fnGetHintBoolean, "GetHintBoolean"},
+	{&fnAddHintCallback, "AddHintCallback"},
+	{&fnDelHintCallback, "DelHintCallback"},
+	{&fnClearHints, "ClearHints"},
 
 	// Error Handling.
 	{&fnClearError, "ClearError"},
@@ -40,11 +48,15 @@ var (
 	fnWasInit       uintptr
 
 	// Configuration Variables.
-	// TODO
-	// https://wiki.libsdl.org/SDL2/SDL_HintPriority
-	// https://wiki.libsdl.org/SDL2/SDL_SetHintWithPriority
-	// https://wiki.libsdl.org/SDL2/SDL_GetHint
-	// https://wiki.libsdl.org/SDL2/SDL_SetHint
+	fnSetHintWithPriority uintptr
+	fnSetHint             uintptr
+	fnResetHint           uintptr
+	fnResetHints          uintptr
+	fnGetHint             uintptr
+	fnGetHintBoolean      uintptr
+	fnAddHintCallback     uintptr
+	fnDelHintCallback     uintptr
+	fnClearHints          uintptr
 
 	// Error Handling.
 	fnClearError uintptr
@@ -69,4 +81,11 @@ func checkError(ret uintptr) (err error) {
 	}
 
 	return GetError()
+}
+
+// mustBeNoError panics if an error occurs.
+func mustBeNoError(err error) {
+	if err != nil {
+		panic(err)
+	}
 }

@@ -38,19 +38,22 @@ func work() (err error) {
 	status := sdl.WasInit(0)
 	fmt.Println(fmt.Sprintf("Initialization status: %v.", status))
 
-	// Set, get and clear an error.
+	// Configuration Variables.
+	sdl.SetHint(sdl.HINT_ACCELEROMETER_AS_JOYSTICK, "1")
+	_ = sdl.GetHint(sdl.HINT_ACCELEROMETER_AS_JOYSTICK)
+	sdl.ResetHints()
+
+	// Error Handling.
 	err = sdl.SetError("Test: %d.", 123)
 	if err != nil {
 		return err
 	}
 	manualErr := sdl.GetError()
-	//fmt.Println(manualErr)
 	if manualErr.Error() != "Test: 123." {
 		return errors.New("errors do not work")
 	}
 	sdl.ClearError()
 	manualErr = sdl.GetError()
-	//fmt.Println(manualErr)
 	if manualErr != nil {
 		return errors.New("errors do not work")
 	}
