@@ -78,12 +78,12 @@
         <tr>
             <td align="center">&#9746;</td>
             <td>SDL_AddHintCallback</td>
-            <td>Callbacks are broken in Golang 1.20</td>
+            <td>Callbacks are broken in Golang</td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>
             <td>SDL_DelHintCallback</td>
-            <td>Callbacks are broken in Golang 1.20</td>
+            <td>Callbacks are broken in Golang</td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>
@@ -107,5 +107,80 @@
             <td></td>
         </tr>
 <!-- -->
+        <tr>
+            <td align="center">&#9746;</td>
+            <td rowspan=15 valign="top">Log Handling</td><td>SDL_LogSetAllPriority</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogSetPriority</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogGetPriority</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogResetPriorities</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_Log</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogVerbose</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogDebug</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogInfo</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogWarn</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogError</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogCritical</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogMessage</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogMessageV</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogGetOutputFunction</td>
+            <td>Callbacks are broken in Golang</td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_LogSetOutputFunction</td>
+            <td>Callbacks are broken in Golang</td>
+        </tr>
     </tbody>
 </table>

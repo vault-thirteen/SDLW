@@ -44,10 +44,7 @@ func work() (err error) {
 	sdl.ResetHints()
 
 	// Error Handling.
-	err = sdl.SetError("Test: %d.", 123)
-	if err != nil {
-		return err
-	}
+	sdl.SetError("Test: %d.", 123)
 	manualErr := sdl.GetError()
 	if manualErr.Error() != "Test: 123." {
 		return errors.New("errors do not work")
@@ -57,6 +54,9 @@ func work() (err error) {
 	if manualErr != nil {
 		return errors.New("errors do not work")
 	}
+
+	// Log Handling.
+	sdl.Log("Hello, World ! N=%d.", 123)
 
 	time.Sleep(time.Second * 1)
 

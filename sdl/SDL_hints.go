@@ -212,7 +212,7 @@ func SetHintWithPriority(name string, value string, priority HintPriority) (ok b
 	cpValue, err = windows.BytePtrFromString(value)
 	mustBeNoError(err)
 
-	ret, _, _ := syscall.SyscallN(fnSetHintWithPriority, uintptr(unsafe.Pointer(cpName)), uintptr(unsafe.Pointer(cpValue)))
+	ret, _, _ := syscall.SyscallN(fnSetHintWithPriority, uintptr(unsafe.Pointer(cpName)), uintptr(unsafe.Pointer(cpValue)), uintptr(priority))
 	return a.BoolFromUintptr(ret)
 }
 

@@ -3,3 +3,4 @@
 vendor
 *.dll
 *.lib
+.dev

@@ -36,7 +36,21 @@ var funcs = []dll.FuncMapping{
 	{&fnSetError, "SetError"},
 
 	// Log Handling.
-	//TODO
+	{&fnLogSetAllPriority, "LogSetAllPriority"},
+	{&fnLogSetPriority, "LogSetPriority"},
+	{&fnLogGetPriority, "LogGetPriority"},
+	{&fnLogResetPriorities, "LogResetPriorities"},
+	{&fnLog, "Log"},
+	{&fnLogVerbose, "LogVerbose"},
+	{&fnLogDebug, "LogDebug"},
+	{&fnLogInfo, "LogInfo"},
+	{&fnLogWarn, "LogWarn"},
+	{&fnLogError, "LogError"},
+	{&fnLogCritical, "LogCritical"},
+	{&fnLogMessage, "LogMessage"},
+	{&fnLogMessageV, "LogMessageV"},
+	{&fnLogGetOutputFunction, "LogGetOutputFunction"},
+	{&fnLogSetOutputFunction, "LogSetOutputFunction"},
 }
 
 var (
@@ -67,7 +81,21 @@ var (
 	fnSetError   uintptr
 
 	// Log Handling.
-	//TODO
+	fnLogSetAllPriority    uintptr
+	fnLogSetPriority       uintptr
+	fnLogGetPriority       uintptr
+	fnLogResetPriorities   uintptr
+	fnLog                  uintptr
+	fnLogVerbose           uintptr
+	fnLogDebug             uintptr
+	fnLogInfo              uintptr
+	fnLogWarn              uintptr
+	fnLogError             uintptr
+	fnLogCritical          uintptr
+	fnLogMessage           uintptr
+	fnLogMessageV          uintptr
+	fnLogGetOutputFunction uintptr
+	fnLogSetOutputFunction uintptr
 )
 
 // LoadLibrary loads the library and its functions.
@@ -94,4 +122,13 @@ func mustBeNoError(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+// BytePtrFromStringP converts a Go string into a C string.
+// If something goes wrong, it panics.
+func BytePtrFromStringP(s string) (cpS *byte) {
+	var err error
+	cpS, err = windows.BytePtrFromString(s)
+	mustBeNoError(err)
+	return cpS
 }
