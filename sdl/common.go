@@ -1,9 +1,7 @@
 package sdl
 
 import (
-	"fmt"
-	"runtime"
-
+	"github.com/vault-thirteen/SDLW/dll"
 	"golang.org/x/sys/windows"
 )
 
@@ -12,12 +10,7 @@ const (
 	DllFuncNamePrefix = "SDL_"
 )
 
-type FuncMapping struct {
-	Fn           *uintptr
-	FunctionName string
-}
-
-var funcs = []FuncMapping{
+var funcs = []dll.FuncMapping{
 	{&fnGetError, "GetError"},
 	{&fnSetMainReady, "SetMainReady"},
 	{&fnInit, "Init"},
@@ -40,48 +33,12 @@ var (
 
 // LoadLibrary loads the library and its functions.
 func LoadLibrary(dllFile string) (err error) {
-	err = loadLibrary(dllFile, &sdlDll, funcs)
+	err = dll.LoadLibrary(dllFile, &sdlDll, funcs, DllFuncNamePrefix)
 	if err != nil {
 		return err
 	}
 
 	return nil
-}
-
-// loadLibrary loads the DLL library and its functions.
-func loadLibrary(dllFile string, h *windows.Handle, funcMappings []FuncMapping) (err error) {
-	if len(dllFile) == 0 {
-		dllFile = SdlDll
-	}
-
-	fmt.Println(fmt.Sprintf("Loading library: %v.", dllFile))
-	*h, err = windows.LoadLibrary(dllFile)
-	if err != nil {
-		return err
-	}
-
-	fmt.Printf("Loading functions: ")
-	for _, fm := range funcMappings {
-		fmt.Printf("[%s] ", fm.FunctionName)
-		*(fm.Fn), err = windows.GetProcAddress(*h, DllFuncNamePrefix+fm.FunctionName)
-		if err != nil {
-			return err
-		}
-	}
-	fmt.Println()
-
-	return nil
-}
-
-// mustBeNoCallError checks for a call error.
-// If call error is set, it finds a name of the function which started this
-// function and panics about that function's failure.
-func mustBeNoCallError(callErr error) {
-	if callErr != nil {
-		caller, _, _, _ := runtime.Caller(1) // Skip 1 function up in stack: mustBeNoCallError -> caller.
-		fn := runtime.FuncForPC(caller)
-		panic(fmt.Sprintf("%s syscall failed: %v", fn.Name(), callErr.Error()))
-	}
 }
 
 // checkError checks error when necessary.

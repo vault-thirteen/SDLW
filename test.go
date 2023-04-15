@@ -6,10 +6,13 @@ import (
 	"time"
 
 	"github.com/vault-thirteen/SDLW/sdl"
+	"github.com/vault-thirteen/SDLW/win32"
 )
 
 func main() {
 	var err error
+	err = win32.LoadLibrary()
+	mustBeNoError(err)
 	err = sdl.LoadLibrary(sdl.SdlDll)
 	mustBeNoError(err)
 
@@ -30,8 +33,9 @@ func work() (err error) {
 	}
 	defer sdl.Quit()
 
-	fmt.Println("Test")
-	time.Sleep(time.Second)
+	status := sdl.WasInit(0)
+	fmt.Println(fmt.Sprintf("Initialization status: %v.", status))
+	time.Sleep(time.Second * 5)
 
 	return nil
 }

@@ -5,6 +5,7 @@ import (
 	"syscall"
 	"unsafe"
 
+	"github.com/vault-thirteen/SDLW/dll"
 	"golang.org/x/sys/windows"
 )
 
@@ -13,7 +14,7 @@ import (
 // https://wiki.libsdl.org/SDL2/SDL_GetError
 func GetError() (err error) {
 	cpErrText, _, callErr := syscall.SyscallN(fnGetError)
-	mustBeNoCallError(callErr)
+	dll.MustBeNoCallError(callErr)
 
 	errText := windows.BytePtrToString((*byte)(unsafe.Pointer(cpErrText)))
 	if len(errText) == 0 {

@@ -4,8 +4,6 @@ A wrapper of SDL library for Go language.
 
 **Notes**
 
-This project is frozen.
-
-CGO does not work.  
-System calls to DLL libraries in Windows O.S. do not work.  
-Go language R.I.P.  
+This project uses system calls because:
+* CGO does not work normally;
+* CGO is slower than system calls in Golang.

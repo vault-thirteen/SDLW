@@ -1,6 +1,10 @@
 package sdl
 
-import "syscall"
+import (
+	"syscall"
+
+	"github.com/vault-thirteen/SDLW/dll"
+)
 
 const (
 	INIT_TIMER          uint32 = 0x00000001
@@ -21,15 +25,15 @@ const (
 // https://wiki.libsdl.org/SDL2/SDL_SetMainReady
 func SetMainReady() {
 	_, _, callErr := syscall.SyscallN(fnSetMainReady)
-	mustBeNoCallError(callErr)
+	dll.MustBeNoCallError(callErr)
 }
 
 // Init
 // int SDL_Init(Uint32 flags);
 // https://wiki.libsdl.org/SDL2/SDL_Init
 func Init(flags uint32) error {
-	ret, _, callErr := syscall.SyscallN(fnInit, uintptr(flags))
-	mustBeNoCallError(callErr)
+	ret, _, _ := syscall.SyscallN(fnInit, uintptr(flags))
+	//dll.MustBeNoCallError(callErr)
 	return checkError(ret)
 }
 
@@ -37,8 +41,8 @@ func Init(flags uint32) error {
 // int SDL_InitSubSystem(Uint32 flags);
 // https://wiki.libsdl.org/SDL2/SDL_InitSubSystem
 func InitSubSystem(flags uint32) error {
-	ret, _, callErr := syscall.SyscallN(fnInitSubSystem, uintptr(flags))
-	mustBeNoCallError(callErr)
+	ret, _, _ := syscall.SyscallN(fnInitSubSystem, uintptr(flags))
+	//dll.MustBeNoCallError(callErr)
 	return checkError(ret)
 }
 
@@ -46,23 +50,23 @@ func InitSubSystem(flags uint32) error {
 // void SDL_QuitSubSystem(Uint32 flags);
 // https://wiki.libsdl.org/SDL2/SDL_QuitSubSystem
 func QuitSubSystem(flags uint32) {
-	_, _, callErr := syscall.SyscallN(fnQuitSubSystem, uintptr(flags))
-	mustBeNoCallError(callErr)
+	_, _, _ = syscall.SyscallN(fnQuitSubSystem, uintptr(flags))
+	//dll.MustBeNoCallError(callErr)
 }
 
 // WasInit
 // Uint32 SDL_WasInit(Uint32 flags);
 // https://wiki.libsdl.org/SDL2/SDL_WasInit
-func WasInit(flags uint32) error {
+func WasInit(flags uint32) (status uint32) {
 	ret, _, callErr := syscall.SyscallN(fnWasInit, uintptr(flags))
-	mustBeNoCallError(callErr)
-	return checkError(ret)
+	dll.MustBeNoCallError(callErr)
+	return uint32(ret)
 }
 
 // Quit
 // void SDL_Quit(void);
 // https://wiki.libsdl.org/SDL2/SDL_Quit
 func Quit() {
-	_, _, callErr := syscall.SyscallN(fnQuit)
-	mustBeNoCallError(callErr)
+	_, _, _ = syscall.SyscallN(fnQuit)
+	//dll.MustBeNoCallError(callErr)
 }
