@@ -11,24 +11,42 @@ const (
 )
 
 var funcs = []dll.FuncMapping{
-	{&fnGetError, "GetError"},
+	// Initialization and Shutdown.
 	{&fnSetMainReady, "SetMainReady"},
 	{&fnInit, "Init"},
 	{&fnInitSubSystem, "InitSubSystem"},
 	{&fnQuitSubSystem, "QuitSubSystem"},
 	{&fnWasInit, "WasInit"},
 	{&fnQuit, "Quit"},
+
+	// Error Handling.
+	{&fnClearError, "ClearError"},
+	{&fnGetError, "GetError"},
+	{&fnSetError, "SetError"},
 }
 
 var (
-	sdlDll          windows.Handle
-	fnGetError      uintptr
+	sdlDll windows.Handle
+
+	// Initialization and Shutdown.
 	fnSetMainReady  uintptr
 	fnInit          uintptr
 	fnInitSubSystem uintptr
 	fnQuitSubSystem uintptr
 	fnWasInit       uintptr
 	fnQuit          uintptr
+
+	// Configuration Variables.
+	// TODO
+	// https://wiki.libsdl.org/SDL2/SDL_HintPriority
+	// https://wiki.libsdl.org/SDL2/SDL_SetHintWithPriority
+	// https://wiki.libsdl.org/SDL2/SDL_GetHint
+	// https://wiki.libsdl.org/SDL2/SDL_SetHint
+
+	// Error Handling.
+	fnClearError uintptr
+	fnGetError   uintptr
+	fnSetError   uintptr
 )
 
 // LoadLibrary loads the library and its functions.
