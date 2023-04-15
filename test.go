@@ -35,7 +35,7 @@ func work() (err error) {
 
 	status := sdl.WasInit(0)
 	fmt.Println(fmt.Sprintf("Initialization status: %v.", status))
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 1)
 
 	return nil
 }
