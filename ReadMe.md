@@ -36,6 +36,7 @@ crash.
         </tr>
     </thead>
     <tbody>
+<!-- -->
         <tr>
             <td align="center">&#9746;</td>
             <td rowspan=6 valign="top">Initialization and Shutdown</td><td>SDL_Init</td>
@@ -66,6 +67,44 @@ crash.
             <td>SDL_WasInit</td>
             <td></td>
         </tr>
+<!-- -->
+        <tr>
+            <td align="center">&#9744;</td>
+            <td rowspan=4 valign="top">Configuration Variables</td><td>SDL_HintPriority</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9744;</td>
+            <td>SDL_SetHintWithPriority</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9744;</td>
+            <td>SDL_GetHint</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9744;</td>
+            <td>SDL_SetHint</td>
+            <td></td>
+        </tr>
+<!-- -->
+        <tr>
+            <td align="center">&#9746;</td>
+            <td rowspan=3 valign="top">Error Handling</td><td>SDL_ClearError</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_GetError</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_SetError</td>
+            <td></td>
+        </tr>
+<!-- -->
     </tbody>
 </table>
 

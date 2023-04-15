@@ -12,12 +12,15 @@ const (
 
 var funcs = []dll.FuncMapping{
 	// Initialization and Shutdown.
-	{&fnSetMainReady, "SetMainReady"},
 	{&fnInit, "Init"},
 	{&fnInitSubSystem, "InitSubSystem"},
-	{&fnQuitSubSystem, "QuitSubSystem"},
-	{&fnWasInit, "WasInit"},
 	{&fnQuit, "Quit"},
+	{&fnQuitSubSystem, "QuitSubSystem"},
+	{&fnSetMainReady, "SetMainReady"},
+	{&fnWasInit, "WasInit"},
+
+	// Configuration Variables.
+	// TODO
 
 	// Error Handling.
 	{&fnClearError, "ClearError"},
@@ -29,12 +32,12 @@ var (
 	sdlDll windows.Handle
 
 	// Initialization and Shutdown.
-	fnSetMainReady  uintptr
 	fnInit          uintptr
 	fnInitSubSystem uintptr
-	fnQuitSubSystem uintptr
-	fnWasInit       uintptr
 	fnQuit          uintptr
+	fnQuitSubSystem uintptr
+	fnSetMainReady  uintptr
+	fnWasInit       uintptr
 
 	// Configuration Variables.
 	// TODO
