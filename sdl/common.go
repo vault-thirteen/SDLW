@@ -51,6 +51,13 @@ var funcs = []dll.FuncMapping{
 	{&fnLogMessageV, "LogMessageV"},
 	{&fnLogGetOutputFunction, "LogGetOutputFunction"},
 	{&fnLogSetOutputFunction, "LogSetOutputFunction"},
+
+	// Assertions.
+	{&fnSetAssertionHandler, "SetAssertionHandler"},
+	{&fnGetDefaultAssertionHandler, "GetDefaultAssertionHandler"},
+	{&fnGetAssertionHandler, "GetAssertionHandler"},
+	{&fnGetAssertionReport, "GetAssertionReport"},
+	{&fnResetAssertionReport, "ResetAssertionReport"},
 }
 
 var (
@@ -96,6 +103,13 @@ var (
 	fnLogMessageV          uintptr
 	fnLogGetOutputFunction uintptr
 	fnLogSetOutputFunction uintptr
+
+	// Assertions.
+	fnSetAssertionHandler        uintptr
+	fnGetDefaultAssertionHandler uintptr
+	fnGetAssertionHandler        uintptr
+	fnGetAssertionReport         uintptr
+	fnResetAssertionReport       uintptr
 )
 
 // LoadLibrary loads the library and its functions.

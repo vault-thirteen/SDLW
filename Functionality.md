@@ -78,12 +78,12 @@
         <tr>
             <td align="center">&#9746;</td>
             <td>SDL_AddHintCallback</td>
-            <td>Callbacks are broken in Golang</td>
+            <td>Callbacks are broken in Golang.</td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>
             <td>SDL_DelHintCallback</td>
-            <td>Callbacks are broken in Golang</td>
+            <td>Callbacks are broken in Golang.</td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>
@@ -175,12 +175,45 @@
         <tr>
             <td align="center">&#9746;</td>
             <td>SDL_LogGetOutputFunction</td>
-            <td>Callbacks are broken in Golang</td>
+            <td>Callbacks are broken in Golang.</td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>
             <td>SDL_LogSetOutputFunction</td>
-            <td>Callbacks are broken in Golang</td>
+            <td>Callbacks are broken in Golang.</td>
+        </tr>
+<!-- -->
+        <tr>
+            <td align="center">&#9744;</td>
+            <td rowspan=6 valign="top">Assertions</td>
+            <td>SDL_assert</td>
+            <td>Macro. Not available in Go.</td>
+<td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_SetAssertionHandler</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_GetDefaultAssertionHandler</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_GetAssertionHandler</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_GetAssertionReport</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">&#9746;</td>
+            <td>SDL_ResetAssertionReport</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
