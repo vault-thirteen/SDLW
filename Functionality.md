@@ -188,7 +188,6 @@
             <td rowspan=6 valign="top">Assertions</td>
             <td>SDL_assert</td>
             <td>Macro. Not available in Go.</td>
-<td></td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>
