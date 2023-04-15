@@ -1,5 +1,7 @@
 package sdl
 
+// SDL_error.h.
+
 import (
 	"errors"
 	"syscall"
@@ -44,3 +46,9 @@ func SetError(errFormat string, args ...uintptr) {
 
 	_, _, _ = syscall.SyscallN(fnSetError, argz...)
 }
+
+// GetErrorMsg
+// char * SDL_GetErrorMsg(char *errstr, int maxlen);
+// https://wiki.libsdl.org/SDL2/SDL_GetErrorMsg
+// This allows the caller to copy the error string into a provided buffer, but
+// otherwise operates exactly the same as SDL_GetError().

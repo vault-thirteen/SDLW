@@ -1,5 +1,7 @@
 package sdl
 
+// SDL_hints.h.
+
 import (
 	"syscall"
 	"unsafe"

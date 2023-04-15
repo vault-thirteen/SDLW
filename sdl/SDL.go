@@ -1,5 +1,7 @@
 package sdl
 
+// SDL.h.
+
 import (
 	"syscall"
 )
@@ -17,13 +19,6 @@ const (
 	INIT_EVERYTHING     uint32 = INIT_TIMER | INIT_AUDIO | INIT_VIDEO | INIT_EVENTS |
 		INIT_JOYSTICK | INIT_HAPTIC | INIT_GAMECONTROLLER | INIT_SENSOR
 )
-
-// SetMainReady
-// void SDL_SetMainReady(void);
-// https://wiki.libsdl.org/SDL2/SDL_SetMainReady
-func SetMainReady() {
-	_, _, _ = syscall.SyscallN(fnSetMainReady)
-}
 
 // Init
 // int SDL_Init(Uint32 flags);

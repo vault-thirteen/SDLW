@@ -1,5 +1,7 @@
 package sdl
 
+// SDL_assert.h.
+
 import "syscall"
 
 type AssertState int
