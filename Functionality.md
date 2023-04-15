@@ -16,7 +16,7 @@
 <!-- -->
         <tr>
             <td align="center">&#9746;</td>
-            <td rowspan=6 valign="top">Initialization and Shutdown</td><td>SDL_Init</td>
+            <td rowspan=6 valign="top">Initialization & Shutdown</td><td>SDL_Init</td>
             <td></td>
         </tr>
         <tr>
@@ -78,12 +78,12 @@
         <tr>
             <td align="center">&#9746;</td>
             <td>SDL_AddHintCallback</td>
-            <td></td>
+            <td>Callbacks are broken in Golang 1.20</td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>
             <td>SDL_DelHintCallback</td>
-            <td></td>
+            <td>Callbacks are broken in Golang 1.20</td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>
