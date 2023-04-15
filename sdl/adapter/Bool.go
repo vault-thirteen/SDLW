@@ -1,5 +1,7 @@
 package a
 
+// Bool
+// SDL_stdinc.h
 type Bool int
 
 const (

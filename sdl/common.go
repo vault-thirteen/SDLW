@@ -34,6 +34,9 @@ var funcs = []dll.FuncMapping{
 	{&fnClearError, "ClearError"},
 	{&fnGetError, "GetError"},
 	{&fnSetError, "SetError"},
+
+	// Log Handling.
+	//TODO
 }
 
 var (
@@ -62,6 +65,9 @@ var (
 	fnClearError uintptr
 	fnGetError   uintptr
 	fnSetError   uintptr
+
+	// Log Handling.
+	//TODO
 )
 
 // LoadLibrary loads the library and its functions.
