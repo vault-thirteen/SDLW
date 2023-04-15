@@ -22,6 +22,9 @@ A wrapper of SDL library for Go language on Windows O.S.
 crash.
 
 ## Supported Functionality
+<!-- &#9746; = checked checkbox -->
+<!-- &#9744;; = un-checked checkbox -->
+
 ### Basics
 <table>
     <thead>
