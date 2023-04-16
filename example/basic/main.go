@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/vault-thirteen/SDLW/sdl"
+	"github.com/vault-thirteen/SDLW/SDL"
 	"github.com/vault-thirteen/SDLW/win32"
 )
 

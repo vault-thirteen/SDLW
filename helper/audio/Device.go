@@ -1,6 +1,6 @@
 package audio
 
-import m "github.com/vault-thirteen/SDLW/sdl/model"
+import m "github.com/vault-thirteen/SDLW/SDL/model"
 
 type Device struct {
 	Index int

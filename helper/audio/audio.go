@@ -1,8 +1,8 @@
 package audio
 
 import (
-	"github.com/vault-thirteen/SDLW/sdl"
-	m "github.com/vault-thirteen/SDLW/sdl/model"
+	"github.com/vault-thirteen/SDLW/SDL"
+	m "github.com/vault-thirteen/SDLW/SDL/model"
 )
 
 // GetInfo collects information about audio subsystem.

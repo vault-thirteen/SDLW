@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/vault-thirteen/SDLW/audio"
-	"github.com/vault-thirteen/SDLW/sdl"
-	m "github.com/vault-thirteen/SDLW/sdl/model"
+	"github.com/vault-thirteen/SDLW/SDL"
+	m "github.com/vault-thirteen/SDLW/SDL/model"
+	"github.com/vault-thirteen/SDLW/helper/audio"
 	"github.com/vault-thirteen/SDLW/win32"
 )
 

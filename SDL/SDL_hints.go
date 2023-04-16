@@ -6,7 +6,7 @@ import (
 	"syscall"
 	"unsafe"
 
-	m "github.com/vault-thirteen/SDLW/sdl/model"
+	m "github.com/vault-thirteen/SDLW/SDL/model"
 	"golang.org/x/sys/windows"
 )
 
