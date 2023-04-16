@@ -295,6 +295,29 @@
     </tbody>
 </table>
 
+### Various Functions
+<table>
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Group</th>
+            <th>Function</th>
+            <th>Header File</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+<!-- -->
+        <tr>
+            <td align="center">&#9746;</td>
+            <td rowspan=1 valign="top">I/O</td>
+            <td>SDL_RWFromFile</td>
+            <td>SDL_rwops.h</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
 ### Audio
 <table>
     <thead>
@@ -329,7 +352,7 @@
         <tr><td align="center">&#9746;</td><td>SDL_GetAudioDeviceStatus</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_PauseAudio</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_PauseAudioDevice</td><td>SDL_audio.h</td><td></td></tr>
-        <tr><td align="center">&#9744;</td><td>SDL_LoadWAV</td><td>SDL_audio.h</td><td>Macro. TODO.</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_LoadWAV</td><td>SDL_audio.h</td><td>Reimplemented macro.</td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_LoadWAV_RW</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_FreeWAV</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_BuildAudioCVT</td><td>SDL_audio.h</td><td></td></tr>
