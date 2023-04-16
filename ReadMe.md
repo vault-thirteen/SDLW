@@ -26,4 +26,5 @@ crash.
 [List of supported functions](./Functionality.md).
 
 ## SDL 2.0 API by Category
-https://wiki.libsdl.org/SDL2/APIByCategory
+https://wiki.libsdl.org/SDL2/APIByCategory  
+Note that the official documentation is very poor.
