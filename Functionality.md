@@ -141,7 +141,7 @@
             <td align="center">&#9744;</td>
             <td>SDL_GetErrorMsg</td>
             <td>SDL_error.h</td>
-            <td>~ SDL_GetError.</td>
+            <td>Use SDL_GetError.</td>
         </tr>
 <!-- -->
         <tr>
