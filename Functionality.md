@@ -295,7 +295,7 @@
     </tbody>
 </table>
 
-### TODO
+### Audio
 <table>
     <thead>
         <tr>
@@ -309,19 +309,46 @@
     <tbody>
 <!-- -->
         <tr>
-            <td align="center">&#9744;</td>
-            <td rowspan=3 valign="top">...</td><td>SDL_xxxxx</td>
-            <td></td>
+            <td align="center">&#9746;</td>
+            <td rowspan=38 valign="top">Audio</td><td>SDL_GetNumAudioDrivers</td>
+            <td>SDL_audio.h</td>
         </tr>
-        <tr>
-            <td align="center">&#9744;</td>
-            <td>SDL_xxxxx</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td align="center">&#9744;</td>
-            <td>SDL_xxxxx</td>
-            <td></td>
-        </tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetAudioDriver</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_AudioInit</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_AudioQuit</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetCurrentAudioDriver</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_OpenAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetNumAudioDevices</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetAudioDeviceName</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetAudioDeviceSpec</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetDefaultAudioInfo</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_OpenAudioDevice</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetAudioStatus</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetAudioDeviceStatus</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_PauseAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_PauseAudioDevice</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_LoadWAV_RW</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_FreeWAV</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_BuildAudioCVT</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_ConvertAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_NewAudioStream</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_AudioStreamPut</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_AudioStreamGet</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_AudioStreamAvailable</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_AudioStreamFlush</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_AudioStreamClear</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_FreeAudioStream</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_MixAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_MixAudioFormat</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_QueueAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_DequeueAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_GetQueuedAudioSize</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_ClearQueuedAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_LockAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_LockAudioDevice</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_UnlockAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_UnlockAudioDevice</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_CloseAudio</td><td>SDL_audio.h</td></tr>
+        <tr><td align="center">&#9746;</td><td>SDL_CloseAudioDevice</td><td>SDL_audio.h</td></tr>
     </tbody>
 </table>

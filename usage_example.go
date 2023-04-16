@@ -64,5 +64,8 @@ func work() (err error) {
 	fmt.Println(sdl.GetVersion())
 	fmt.Println(sdl.GetRevision())
 
+	// Audio.
+	//TODO
+
 	return nil
 }

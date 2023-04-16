@@ -63,6 +63,46 @@ var funcs = []dll.FuncMapping{
 	{&fnGetVersion, "GetVersion"},
 	{&fnGetRevision, "GetRevision"},
 	{&fnGetRevisionNumber, "GetRevisionNumber"},
+
+	// Audio.
+	{&fnGetNumAudioDrivers, "GetNumAudioDrivers"},
+	{&fnGetAudioDriver, "GetAudioDriver"},
+	{&fnAudioInit, "AudioInit"},
+	{&fnAudioQuit, "AudioQuit"},
+	{&fnGetCurrentAudioDriver, "GetCurrentAudioDriver"},
+	{&fnOpenAudio, "OpenAudio"},
+	{&fnGetNumAudioDevices, "GetNumAudioDevices"},
+	{&fnGetAudioDeviceName, "GetAudioDeviceName"},
+	{&fnGetAudioDeviceSpec, "GetAudioDeviceSpec"},
+	{&fnGetDefaultAudioInfo, "GetDefaultAudioInfo"},
+	{&fnOpenAudioDevice, "OpenAudioDevice"},
+	{&fnGetAudioStatus, "GetAudioStatus"},
+	{&fnGetAudioDeviceStatus, "GetAudioDeviceStatus"},
+	{&fnPauseAudio, "PauseAudio"},
+	{&fnPauseAudioDevice, "PauseAudioDevice"},
+	{&fnLoadWAV_RW, "LoadWAV_RW"},
+	{&fnFreeWAV, "FreeWAV"},
+	{&fnBuildAudioCVT, "BuildAudioCVT"},
+	{&fnConvertAudio, "ConvertAudio"},
+	{&fnNewAudioStream, "NewAudioStream"},
+	{&fnAudioStreamPut, "AudioStreamPut"},
+	{&fnAudioStreamGet, "AudioStreamGet"},
+	{&fnAudioStreamAvailable, "AudioStreamAvailable"},
+	{&fnAudioStreamFlush, "AudioStreamFlush"},
+	{&fnAudioStreamClear, "AudioStreamClear"},
+	{&fnFreeAudioStream, "FreeAudioStream"},
+	{&fnMixAudio, "MixAudio"},
+	{&fnMixAudioFormat, "MixAudioFormat"},
+	{&fnQueueAudio, "QueueAudio"},
+	{&fnDequeueAudio, "DequeueAudio"},
+	{&fnGetQueuedAudioSize, "GetQueuedAudioSize"},
+	{&fnClearQueuedAudio, "ClearQueuedAudio"},
+	{&fnLockAudio, "LockAudio"},
+	{&fnLockAudioDevice, "LockAudioDevice"},
+	{&fnUnlockAudio, "UnlockAudio"},
+	{&fnUnlockAudioDevice, "UnlockAudioDevice"},
+	{&fnCloseAudio, "CloseAudio"},
+	{&fnCloseAudioDevice, "CloseAudioDevice"},
 }
 
 var (
@@ -120,6 +160,46 @@ var (
 	fnGetVersion        uintptr
 	fnGetRevision       uintptr
 	fnGetRevisionNumber uintptr
+
+	// Audio.
+	fnGetNumAudioDrivers    uintptr
+	fnGetAudioDriver        uintptr
+	fnAudioInit             uintptr
+	fnAudioQuit             uintptr
+	fnGetCurrentAudioDriver uintptr
+	fnOpenAudio             uintptr
+	fnGetNumAudioDevices    uintptr
+	fnGetAudioDeviceName    uintptr
+	fnGetAudioDeviceSpec    uintptr
+	fnGetDefaultAudioInfo   uintptr
+	fnOpenAudioDevice       uintptr
+	fnGetAudioStatus        uintptr
+	fnGetAudioDeviceStatus  uintptr
+	fnPauseAudio            uintptr
+	fnPauseAudioDevice      uintptr
+	fnLoadWAV_RW            uintptr
+	fnFreeWAV               uintptr
+	fnBuildAudioCVT         uintptr
+	fnConvertAudio          uintptr
+	fnNewAudioStream        uintptr
+	fnAudioStreamPut        uintptr
+	fnAudioStreamGet        uintptr
+	fnAudioStreamAvailable  uintptr
+	fnAudioStreamFlush      uintptr
+	fnAudioStreamClear      uintptr
+	fnFreeAudioStream       uintptr
+	fnMixAudio              uintptr
+	fnMixAudioFormat        uintptr
+	fnQueueAudio            uintptr
+	fnDequeueAudio          uintptr
+	fnGetQueuedAudioSize    uintptr
+	fnClearQueuedAudio      uintptr
+	fnLockAudio             uintptr
+	fnLockAudioDevice       uintptr
+	fnUnlockAudio           uintptr
+	fnUnlockAudioDevice     uintptr
+	fnCloseAudio            uintptr
+	fnCloseAudioDevice      uintptr
 )
 
 // LoadLibrary loads the library and its functions.
