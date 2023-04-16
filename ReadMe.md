@@ -1,6 +1,9 @@
 # SDLW
 
-A wrapper of SDL library for Go language on Windows O.S. 
+A wrapper of SDL library for Go language on Windows O.S.
+
+This library also provides various helper-functions to make usage of the SDL 
+library much easier.
 
 **Notes**
 
@@ -16,7 +19,7 @@ A wrapper of SDL library for Go language on Windows O.S.
 * This library uses a mixed approach for type handling.
   * Simple string types, such as `*char`, are converted into string;
   * Simple integers are converted into appropriate integer types;
-  * Buffer pointers are coverted to Go's `*uint8` or `*byte`;
+  * Buffer pointers are converted into Go's `*uint8` or `*byte`;
   * Some complex objects are converted into Go's objects;
   * Some types which can not be converted into Go, are returned as `uintptr`;
   * Note that Go code must not change C pointers, otherwise the program will 
