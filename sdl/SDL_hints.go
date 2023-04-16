@@ -6,16 +6,8 @@ import (
 	"syscall"
 	"unsafe"
 
-	a "github.com/vault-thirteen/SDLW/sdl/adapter"
+	m "github.com/vault-thirteen/SDLW/sdl/model"
 	"golang.org/x/sys/windows"
-)
-
-type HintPriority int
-
-const (
-	HINT_DEFAULT  = HintPriority(0)
-	HINT_NORMAL   = HintPriority(1)
-	HINT_OVERRIDE = HintPriority(2)
 )
 
 const (
@@ -193,11 +185,6 @@ const (
 	HINT_TRACKPAD_IS_TOUCH_ONLY                   = "SDL_TRACKPAD_IS_TOUCH_ONLY"
 )
 
-// HintCallback
-// void (SDLCALL *SDL_HintCallback)(void *userdata, const char *name, const char *oldValue, const char *newValue);
-// SDL_hints.h.
-type HintCallback func(userdata uintptr, name uintptr, oldValue uintptr, newValue uintptr)
-
 // SetHintWithPriority
 /*
 SDL_bool SDL_SetHintWithPriority(const char *name,
@@ -205,7 +192,7 @@ SDL_bool SDL_SetHintWithPriority(const char *name,
                                  SDL_HintPriority priority);
 */
 // https://wiki.libsdl.org/SDL2/SDL_SetHintWithPriority
-func SetHintWithPriority(name string, value string, priority HintPriority) (ok bool) {
+func SetHintWithPriority(name string, value string, priority m.HintPriority) (ok bool) {
 	var err error
 	var cpName *byte
 	cpName, err = windows.BytePtrFromString(name)
@@ -215,7 +202,7 @@ func SetHintWithPriority(name string, value string, priority HintPriority) (ok b
 	mustBeNoError(err)
 
 	ret, _, _ := syscall.SyscallN(fnSetHintWithPriority, uintptr(unsafe.Pointer(cpName)), uintptr(unsafe.Pointer(cpValue)), uintptr(priority))
-	return a.BoolFromUintptr(ret)
+	return m.BoolFromUintptr(ret)
 }
 
 // SetHint
@@ -234,7 +221,7 @@ func SetHint(name string, value string) bool {
 	mustBeNoError(err)
 
 	ret, _, _ := syscall.SyscallN(fnSetHint, uintptr(unsafe.Pointer(cpName)), uintptr(unsafe.Pointer(cpValue)))
-	return a.BoolFromUintptr(ret)
+	return m.BoolFromUintptr(ret)
 }
 
 // ResetHint
@@ -247,7 +234,7 @@ func ResetHint(name string) bool {
 	mustBeNoError(err)
 
 	ret, _, _ := syscall.SyscallN(fnResetHint, uintptr(unsafe.Pointer(cpName)))
-	return a.BoolFromUintptr(ret)
+	return m.BoolFromUintptr(ret)
 }
 
 // ResetHints
@@ -279,8 +266,8 @@ func GetHintBoolean(name string, defaultValue bool) bool {
 	cpName, err = windows.BytePtrFromString(name)
 	mustBeNoError(err)
 
-	ret, _, _ := syscall.SyscallN(fnGetHintBoolean, uintptr(unsafe.Pointer(cpName)), a.BoolToUintptr(defaultValue))
-	return a.BoolFromUintptr(ret)
+	ret, _, _ := syscall.SyscallN(fnGetHintBoolean, uintptr(unsafe.Pointer(cpName)), m.BoolToUintptr(defaultValue))
+	return m.BoolFromUintptr(ret)
 }
 
 // AddHintCallback

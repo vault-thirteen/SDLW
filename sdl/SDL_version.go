@@ -6,30 +6,15 @@ import (
 	"syscall"
 	"unsafe"
 
+	m "github.com/vault-thirteen/SDLW/sdl/model"
 	"golang.org/x/sys/windows"
 )
-
-// Version
-/*
-typedef struct SDL_version
-{
-	Uint8 major;
-	Uint8 minor;
-	Uint8 patch;
-} SDL_version;
-*/
-// SDL_version.h
-type Version struct {
-	Major uint8
-	Minor uint8
-	Patch uint8
-}
 
 // GetVersion
 // void SDL_GetVersion(SDL_version * ver);
 // https://wiki.libsdl.org/SDL2/SDL_GetVersion
-func GetVersion() *Version {
-	var ver = new(Version)
+func GetVersion() *m.Version {
+	var ver = new(m.Version)
 
 	_, _, _ = syscall.SyscallN(fnGetVersion, uintptr(unsafe.Pointer(ver)))
 	return ver

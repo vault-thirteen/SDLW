@@ -5,29 +5,14 @@ package sdl
 import (
 	"syscall"
 	"unsafe"
+
+	m "github.com/vault-thirteen/SDLW/sdl/model"
 )
-
-type LogPriority int
-
-const (
-	LOG_PRIORITY_VERBOSE  = LogPriority(1)
-	LOG_PRIORITY_DEBUG    = LogPriority(2)
-	LOG_PRIORITY_INFO     = LogPriority(3)
-	LOG_PRIORITY_WARN     = LogPriority(4)
-	LOG_PRIORITY_ERROR    = LogPriority(5)
-	LOG_PRIORITY_CRITICAL = LogPriority(6)
-	NUM_LOG_PRIORITIES    = LogPriority(7)
-)
-
-// LogOutputFunction
-// void (SDLCALL *SDL_LogOutputFunction)(void *userdata, int category, SDL_LogPriority priority, const char *message);
-// SDL_log.h
-type LogOutputFunction func(userdata uintptr, category uintptr, priority uintptr, message uintptr)
 
 // LogSetAllPriority
 // void SDL_LogSetAllPriority(SDL_LogPriority priority);
 // https://wiki.libsdl.org/SDL2/SDL_LogSetAllPriority
-func LogSetAllPriority(priority LogPriority) {
+func LogSetAllPriority(priority m.LogPriority) {
 	_, _, _ = syscall.SyscallN(fnLogSetAllPriority, uintptr(priority))
 }
 
@@ -37,16 +22,16 @@ void SDL_LogSetPriority(int category,
                         SDL_LogPriority priority);
 */
 // https://wiki.libsdl.org/SDL2/SDL_LogSetPriority
-func LogSetPriority(category int, priority LogPriority) {
+func LogSetPriority(category int, priority m.LogPriority) {
 	_, _, _ = syscall.SyscallN(fnLogSetPriority, uintptr(category), uintptr(priority))
 }
 
 // LogGetPriority
 // SDL_LogPriority SDL_LogGetPriority(int category);
 // https://wiki.libsdl.org/SDL2/SDL_LogGetPriority
-func LogGetPriority(category int) LogPriority {
+func LogGetPriority(category int) m.LogPriority {
 	ret, _, _ := syscall.SyscallN(fnLogGetPriority, uintptr(category))
-	return LogPriority(ret)
+	return m.LogPriority(ret)
 }
 
 // LogResetPriorities
@@ -167,7 +152,7 @@ void SDL_LogMessage(int category,
                     SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(3);
 */
 // https://wiki.libsdl.org/SDL2/SDL_LogMessage
-func LogMessage(category int, priority LogPriority, fmt string, args ...uintptr) {
+func LogMessage(category int, priority m.LogPriority, fmt string, args ...uintptr) {
 	// Golang wants all the args to be in a single array. Let it be so.
 	argz := make([]uintptr, 0, len(args)+3)
 	argz = append(argz, uintptr(category))
@@ -187,7 +172,7 @@ void SDL_LogMessageV(int category,
                      const char *fmt, va_list ap);
 */
 // https://wiki.libsdl.org/SDL2/SDL_LogMessageV
-func LogMessageV(category int, priority LogPriority, fmt string, ap string) {
+func LogMessageV(category int, priority m.LogPriority, fmt string, ap string) {
 	_, _, _ = syscall.SyscallN(fnLogMessageV, uintptr(category), uintptr(priority), uintptr(unsafe.Pointer(BytePtrFromStringP(fmt))), uintptr(unsafe.Pointer(BytePtrFromStringP(ap))))
 }
 

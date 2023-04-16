@@ -4,45 +4,6 @@ package sdl
 
 import "syscall"
 
-type AssertState int
-
-const (
-	ASSERTION_RETRY         = AssertState(0)
-	ASSERTION_BREAK         = AssertState(1)
-	ASSERTION_ABORT         = AssertState(2)
-	ASSERTION_IGNORE        = AssertState(3)
-	ASSERTION_ALWAYS_IGNORE = AssertState(4)
-)
-
-// AssertData
-/*
-typedef struct SDL_AssertData
-{
-	int always_ignore;
-	unsigned int trigger_count;
-	const char *condition;
-	const char *filename;
-	int linenum;
-	const char *function;
-	const struct SDL_AssertData *next;
-} SDL_AssertData;
-*/
-// SDL_assert.h
-type AssertData struct {
-	AlwaysIgnore int
-	TriggerCount uint
-	Condition    *byte
-	Filename     *byte
-	LineNum      int
-	Function     *byte
-	Next         *AssertData
-}
-
-// AssertionHandler
-// SDL_AssertState (SDLCALL *SDL_AssertionHandler)(const SDL_AssertData* data, void* userdata);
-// SDL_assert.h
-type AssertionHandler func(data uintptr, userdata uintptr)
-
 // SetAssertionHandler
 /*
 void SDL_SetAssertionHandler(
