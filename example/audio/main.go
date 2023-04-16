@@ -45,7 +45,7 @@ func work() (err error) {
 	if err != nil {
 		return err
 	}
-	device := audioInfo.PlaybackDevices[audioInfo.PlaybackDevicesCount-3]
+	device := audioInfo.PlaybackDevices[0]
 	fmt.Println(fmt.Sprintf("Using device: %s.", device.Name))
 
 	// Load a WAV file.
