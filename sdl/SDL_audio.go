@@ -1,5 +1,7 @@
 package sdl
 
+// SDL_audio.h.
+
 import (
 	"syscall"
 	"unsafe"
@@ -7,8 +9,6 @@ import (
 	"github.com/vault-thirteen/SDLW/sdl/model"
 	"golang.org/x/sys/windows"
 )
-
-// SDL_audio.h.
 
 // Audio flags.
 const (

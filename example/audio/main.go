@@ -39,7 +39,7 @@ func work() (err error) {
 	status := sdl.WasInit(0)
 	fmt.Println(fmt.Sprintf("Initialization status: %v.", status))
 
-	// Audio.
+	// Audio Info.
 	var audioInfo *audio.Info
 	audioInfo, err = audio.GetInfo()
 	if err != nil {
@@ -48,6 +48,20 @@ func work() (err error) {
 	device := audioInfo.PlaybackDevices[0]
 	fmt.Println(fmt.Sprintf("Using device: %s.", device.Name))
 
+	err = playSound(device)
+	if err != nil {
+		return err
+	}
+
+	err = playMusic(device)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func playSound(device *audio.Device) (err error) {
 	// Load a WAV file.
 	filePath := `C:\Windows\Media\chimes.wav`
 	var wavSpec m.AudioSpec
@@ -75,6 +89,14 @@ func work() (err error) {
 	sdl.PauseAudioDevice(deviceId, 0)
 
 	time.Sleep(time.Second * 3) //TODO:How to get length of audio ?
+
+	return nil
+}
+
+func playMusic(device *audio.Device) (err error) {
+	// Load an MP3 file.
+	//filePath := `D:\Temp\1\music.mp3`
+	//Mix_Init
 
 	return nil
 }
