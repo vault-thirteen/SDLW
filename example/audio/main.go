@@ -74,7 +74,7 @@ func work() (err error) {
 	}
 	sdl.PauseAudioDevice(deviceId, 0)
 
-	time.Sleep(time.Second * 3)
+	time.Sleep(time.Second * 3) //TODO:How to get length of audio ?
 
 	return nil
 }
