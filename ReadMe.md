@@ -14,7 +14,7 @@ A wrapper of SDL library for Go language on Windows O.S.
 
 
 * This library uses a mixed approach for type handling.
-  * Simple string types, such as `*char` are converted into string;
+  * Simple string types, such as `*char`, are converted into string;
   * Simple integers are converted into appropriate integer types;
   * Buffer pointers are coverted to Go's `*uint8` or `*byte`;
   * Some complex objects are converted into Go's objects;
