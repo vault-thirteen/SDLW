@@ -313,6 +313,7 @@
             <td rowspan=38 valign="top">Audio</td>
             <td>SDL_GetNumAudioDrivers</td>
             <td>SDL_audio.h</td>
+            <td></td>
         </tr>
         <tr><td align="center">&#9746;</td><td>SDL_GetAudioDriver</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_AudioInit</td><td>SDL_audio.h</td><td></td></tr>
