@@ -4,7 +4,7 @@ import (
 	"syscall"
 	"unsafe"
 
-	bt "github.com/vault-thirteen/TIFFer/models/basic-types"
+	bt "github.com/vault-thirteen/auxie/BasicTypes"
 	"golang.org/x/sys/windows"
 )
 
@@ -476,3 +476,7 @@ func CloseAudio() {
 func CloseAudioDevice(dev AudioDeviceID) {
 	_, _, _ = syscall.SyscallN(fnCloseAudioDevice, uintptr(dev))
 }
+
+// LoadWAV
+// #define SDL_LoadWAV(file, spec, audio_buf, audio_len) SDL_LoadWAV_RW(SDL_RWFromFile(file, "rb"),1, spec,audio_buf,audio_len)
+//TODO

@@ -103,6 +103,8 @@ var funcs = []dll.FuncMapping{
 	{&fnUnlockAudioDevice, "UnlockAudioDevice"},
 	{&fnCloseAudio, "CloseAudio"},
 	{&fnCloseAudioDevice, "CloseAudioDevice"},
+
+	{&fnLoadWAV, "LoadWAV"},
 }
 
 var (
@@ -200,6 +202,8 @@ var (
 	fnUnlockAudioDevice     uintptr
 	fnCloseAudio            uintptr
 	fnCloseAudioDevice      uintptr
+
+	fnLoadWAV uintptr
 )
 
 // LoadLibrary loads the library and its functions.
