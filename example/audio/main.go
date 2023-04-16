@@ -65,7 +65,7 @@ func work() (err error) {
 		return sdl.GetError()
 	}
 	defer sdl.CloseAudioDevice(deviceId)
-	fmt.Println("Device ID:", deviceId)
+	fmt.Println(fmt.Sprintf("Device ID: %d.", deviceId))
 
 	// Play audio.
 	ret := sdl.QueueAudio(deviceId, wavBuffer, wavLength)
