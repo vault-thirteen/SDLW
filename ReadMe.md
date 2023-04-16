@@ -25,8 +25,5 @@ crash.
 ## Supported Functionality
 [List of supported functions](./Functionality.md).
 
-## Adapters
-[List of adapters](./Adapters.md).
-
 ## SDL 2.0 API by Category
 https://wiki.libsdl.org/SDL2/APIByCategory
