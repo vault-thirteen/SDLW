@@ -1,6 +1,8 @@
-package m
+package mm
 
-// Mix_Music
+import "github.com/vault-thirteen/SDLW/SDL/model"
+
+// Music
 /*
 struct _Mix_Music {
     Mix_MusicInterface *interface;
@@ -15,12 +17,12 @@ struct _Mix_Music {
 };
 typedef struct _Mix_Music Mix_Music;
 */
-type Mix_Music struct {
-	Interface *Mix_MusicInterface
+type Music struct {
+	Interface *MusicInterface
 	Context   *byte
 
-	Playing   Bool
-	Fading    Mix_Fading
+	Playing   m.Bool
+	Fading    Fading
 	FadeStep  int
 	FadeSteps int
 

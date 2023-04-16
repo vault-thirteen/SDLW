@@ -1,6 +1,8 @@
-package m
+package mm
 
-// Mix_MusicInterface
+import "github.com/vault-thirteen/SDLW/SDL/model"
+
+// MusicInterface
 /*
 typedef struct
 {
@@ -36,12 +38,12 @@ typedef struct
 	void (*Unload)(void);
 } Mix_MusicInterface;
 */
-type Mix_MusicInterface struct {
+type MusicInterface struct {
 	Tag    *byte
-	Api    Mix_MusicAPI
-	Type   Mix_MusicType
-	Loaded Bool
-	Opened Bool
+	Api    MusicAPI
+	Type   MusicType
+	Loaded m.Bool
+	Opened m.Bool
 
 	// A lot of function pointers ...
 }

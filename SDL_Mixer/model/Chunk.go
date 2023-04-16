@@ -1,6 +1,6 @@
-package m
+package mm
 
-// Mix_Chunk
+// Chunk
 /*
 typedef struct Mix_Chunk {
     int allocated;
@@ -9,7 +9,7 @@ typedef struct Mix_Chunk {
     Uint8 volume;
 } Mix_Chunk;
 */
-type Mix_Chunk struct {
+type Chunk struct {
 	Allocated int
 	Abuf      *uint8
 	Alen      uint32
