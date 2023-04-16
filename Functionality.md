@@ -329,7 +329,7 @@
         <tr><td align="center">&#9746;</td><td>SDL_GetAudioDeviceStatus</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_PauseAudio</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_PauseAudioDevice</td><td>SDL_audio.h</td><td></td></tr>
-        <tr><td align="center">&#9746;</td><td>SDL_LoadWAV</td><td>SDL_audio.h</td><td>Macro. TODO.</td></tr>
+        <tr><td align="center">&#9744;</td><td>SDL_LoadWAV</td><td>SDL_audio.h</td><td>Macro. TODO.</td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_LoadWAV_RW</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_FreeWAV</td><td>SDL_audio.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>SDL_BuildAudioCVT</td><td>SDL_audio.h</td><td></td></tr>
