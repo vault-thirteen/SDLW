@@ -242,3 +242,9 @@ func BytePtrFromStringP(s string) (cpS *byte) {
 	mustBeNoError(err)
 	return cpS
 }
+
+// GetFnGetError gets the handle of SDL 'GetError' function.
+// This handle is used by various SDL extensions.
+func GetFnGetError() uintptr {
+	return fnGetError
+}

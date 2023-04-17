@@ -378,3 +378,34 @@
         <tr><td align="center">&#9746;</td><td>SDL_CloseAudioDevice</td><td>SDL_audio.h</td><td></td></tr>
     </tbody>
 </table>
+
+
+### SDL Mixer
+<table>
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Group</th>
+            <th>Function</th>
+            <th>Header File</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+<!-- -->
+        <tr>
+            <td align="center">&#9746;</td>
+            <td rowspan=8 valign="top">Audio</td>
+            <td>Mix_Linked_Version</td>
+            <td>SDL_mixer.h</td>
+            <td></td>
+        </tr>
+        <tr><td align="center">&#9746;</td><td>Mix_Init</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9746;</td><td>Mix_Quit</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9746;</td><td>Mix_OpenAudio</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9746;</td><td>Mix_OpenAudioDevice</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>...</td><td>SDL_mixer.h</td><td>TODO</td></tr>
+        <tr><td align="center">&#9746;</td><td>Mix_CloseAudio</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9746;</td><td>Mix_GetError</td><td>SDL_mixer.h</td><td>Calls SDL_GetError.</td></tr>
+    </tbody>
+</table>

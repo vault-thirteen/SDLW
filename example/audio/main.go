@@ -7,6 +7,8 @@ import (
 
 	"github.com/vault-thirteen/SDLW/SDL"
 	m "github.com/vault-thirteen/SDLW/SDL/model"
+	sdlm "github.com/vault-thirteen/SDLW/SDL_Mixer"
+	mm "github.com/vault-thirteen/SDLW/SDL_Mixer/model"
 	"github.com/vault-thirteen/SDLW/helper/audio"
 	"github.com/vault-thirteen/SDLW/win32"
 )
@@ -15,7 +17,14 @@ func main() {
 	var err error
 	err = win32.LoadLibrary()
 	mustBeNoError(err)
+
 	err = sdl.LoadLibrary(sdl.SdlDll)
+	mustBeNoError(err)
+
+	sdlMixerExternalFunctions := sdlm.ExternalFunctions{
+		ExtFnGetError: sdl.GetFnGetError(),
+	}
+	err = sdlm.LoadLibrary(sdlm.SdlMixDll, &sdlMixerExternalFunctions)
 	mustBeNoError(err)
 
 	err = work()
@@ -29,15 +38,26 @@ func mustBeNoError(err error) {
 }
 
 func work() (err error) {
-	// Initialization and status check.
+	// Show versions.
+	fmt.Println(fmt.Sprintf("SDL Version: %v.", sdl.GetVersion()))
+	fmt.Println(fmt.Sprintf("SDL Mixer Version: %v.", sdlm.Linked_Version()))
+
+	// Initialization of SDL.
 	err = sdl.Init(sdl.INIT_AUDIO)
 	if err != nil {
 		return err
 	}
 	defer sdl.Quit()
+	sdlInitStatus := sdl.WasInit(0)
+	fmt.Println(fmt.Sprintf("SDL Initialization Status: %v.", sdlInitStatus))
 
-	status := sdl.WasInit(0)
-	fmt.Println(fmt.Sprintf("Initialization status: %v.", status))
+	// Initialization of SDL Mixer.
+	sdlMixerInitFlags := sdlm.Init(mm.INIT_MP3)
+	if sdlMixerInitFlags == 0 {
+		return sdlm.GetError()
+	}
+	defer sdlm.Quit()
+	fmt.Println(fmt.Sprintf("SDL Mixer Initialization Status: %v.", sdlMixerInitFlags))
 
 	// Audio Info.
 	var audioInfo *audio.Info
