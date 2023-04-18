@@ -12,10 +12,10 @@ import (
 
 // Audio flags.
 const (
-	AUDIO_MASK_BITSIZE  = 0xFF
-	AUDIO_MASK_DATATYPE = 1 << 8
-	AUDIO_MASK_ENDIAN   = 1 << 12
-	AUDIO_MASK_SIGNED   = 1 << 15
+	AUDIO_MASK_BITSIZE  = m.Uint16(0xFF)
+	AUDIO_MASK_DATATYPE = m.Uint16(1 << 8)
+	AUDIO_MASK_ENDIAN   = m.Uint16(1 << 12)
+	AUDIO_MASK_SIGNED   = m.Uint16(1 << 15)
 )
 
 // Audio format flags.
@@ -40,6 +40,19 @@ const (
 	AUDIO_ALLOW_SAMPLES_CHANGE   = 0x00000008
 	AUDIO_ALLOW_ANY_CHANGE       = AUDIO_ALLOW_FREQUENCY_CHANGE | AUDIO_ALLOW_FORMAT_CHANGE | AUDIO_ALLOW_CHANNELS_CHANGE | AUDIO_ALLOW_SAMPLES_CHANGE
 )
+
+func AUDIO_BITSIZE(x m.Uint16) m.Uint16 {
+	return x & AUDIO_MASK_BITSIZE
+}
+func AUDIO_ISFLOAT(x m.Uint16) m.Uint16 {
+	return x & AUDIO_MASK_DATATYPE
+}
+func AUDIO_ISBIGENDIAN(x m.Uint16) m.Uint16 {
+	return x & AUDIO_MASK_ENDIAN
+}
+func AUDIO_ISSIGNED(x m.Uint16) m.Uint16 {
+	return x & AUDIO_MASK_SIGNED
+}
 
 // GetNumAudioDrivers
 // int SDL_GetNumAudioDrivers(void);

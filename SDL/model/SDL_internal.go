@@ -16,8 +16,8 @@ const SDL_VARIABLE_LENGTH_ARRAY = 1 //TODO: ???
 type Void byte
 type Char byte
 
-type Int int16
-type Uint uint16
+type Int int32
+type Uint uint32
 
 type Int8 int8
 type Uint8 uint8
