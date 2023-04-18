@@ -1,6 +1,6 @@
 package m
 
-type LogPriority int
+type LogPriority Int
 
 const (
 	LOG_PRIORITY_VERBOSE  = LogPriority(1)

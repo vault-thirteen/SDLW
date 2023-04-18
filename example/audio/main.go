@@ -52,7 +52,7 @@ func work() (err error) {
 	fmt.Println(fmt.Sprintf("SDL Initialization Status: %v.", sdlInitStatus))
 
 	// Initialization of SDL Mixer.
-	sdlMixerInitFlags := sdlm.Init(mm.INIT_MP3)
+	sdlMixerInitFlags := sdlm.Init(m.Int(mm.INIT_MP3))
 	if sdlMixerInitFlags == 0 {
 		return sdlm.GetError()
 	}
@@ -85,8 +85,8 @@ func playSound(device *audio.Device) (err error) {
 	// Load a WAV file.
 	filePath := `C:\Windows\Media\chimes.wav`
 	var wavSpec m.AudioSpec
-	var wavBuffer *uint8
-	var wavLength uint32
+	var wavBuffer *m.Uint8
+	var wavLength m.Uint32
 	_ = sdl.LoadWAV(filePath, &wavSpec, &wavBuffer, &wavLength)
 	defer func() {
 		sdl.FreeWAV(wavBuffer)

@@ -1,12 +1,14 @@
 package audio
 
+import m "github.com/vault-thirteen/SDLW/SDL/model"
+
 type Info struct {
-	DriversCount int
+	DriversCount m.Int
 	Drivers      []*Driver
 
-	PlaybackDevicesCount int
+	PlaybackDevicesCount m.Int
 	PlaybackDevices      []*Device
 
-	RecorderDevicesCount int
+	RecorderDevicesCount m.Int
 	RecorderDevices      []*Device
 }

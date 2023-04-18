@@ -19,12 +19,12 @@ typedef struct _Mix_Music Mix_Music;
 */
 type Music struct {
 	Interface *MusicInterface
-	Context   *byte
+	Context   *m.Void
 
 	Playing   m.Bool
 	Fading    Fading
-	FadeStep  int
-	FadeSteps int
+	FadeStep  m.Int
+	FadeSteps m.Int
 
-	Filename [1024]byte
+	Filename [1024]m.Char
 }

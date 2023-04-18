@@ -1,5 +1,7 @@
 package mm
 
+import m "github.com/vault-thirteen/SDLW/SDL/model"
+
 /*
 typedef enum
 
@@ -12,7 +14,7 @@ typedef enum
 	    MIX_INIT_OPUS   = 0x00000040
 	} MIX_InitFlags;
 */
-type InitFlags int
+type InitFlags m.Int
 
 const (
 	INIT_FLAC = InitFlags(0x00000001)

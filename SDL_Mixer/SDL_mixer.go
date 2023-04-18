@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	m "github.com/vault-thirteen/SDLW/SDL/model"
-	mm "github.com/vault-thirteen/SDLW/SDL_Mixer/model"
 )
 
 const (
@@ -26,9 +25,9 @@ func Linked_Version() *m.Version {
 // extern DECLSPEC int SDLCALL Mix_Init(int flags);
 // "It returns the flags successfully initialized, or 0 on failure."
 // https://wiki.libsdl.org/SDL3_mixer/Mix_Init
-func Init(flags mm.InitFlags) mm.InitFlags {
+func Init(flags m.Int) m.Int {
 	ret, _, _ := syscall.SyscallN(fnInit, uintptr(flags))
-	return mm.InitFlags(ret)
+	return m.Int(ret)
 }
 
 //extern DECLSPEC void SDLCALL Mix_Quit(void);
@@ -37,15 +36,15 @@ func Quit() {
 }
 
 //extern DECLSPEC int SDLCALL Mix_OpenAudio(int frequency, Uint16 format, int channels, int chunksize);
-func OpenAudio(frequency int, format uint16, channels int, chunkSize int) int {
+func OpenAudio(frequency m.Int, format m.Uint16, channels m.Int, chunkSize m.Int) m.Int {
 	ret, _, _ := syscall.SyscallN(fnOpenAudio, uintptr(frequency), uintptr(format), uintptr(channels), uintptr(chunkSize))
-	return int(ret)
+	return m.Int(ret)
 }
 
 //extern DECLSPEC int SDLCALL Mix_OpenAudioDevice(int frequency, Uint16 format, int channels, int chunksize, const char* device, int allowed_changes);
-func OpenAudioDevice(frequency int, format uint16, channels int, chunkSize int, device string, allowedChanges int) int {
+func OpenAudioDevice(frequency m.Int, format m.Uint16, channels m.Int, chunkSize m.Int, device string, allowedChanges m.Int) m.Int {
 	ret, _, _ := syscall.SyscallN(fnOpenAudioDevice, uintptr(frequency), uintptr(format), uintptr(channels), uintptr(chunkSize), uintptr(unsafe.Pointer(BytePtrFromStringP(device))), uintptr(allowedChanges))
-	return int(ret)
+	return m.Int(ret)
 }
 
 //TODO

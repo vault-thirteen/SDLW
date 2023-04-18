@@ -11,7 +11,7 @@ typedef struct SDL_version
 */
 // SDL_version.h
 type Version struct {
-	Major uint8
-	Minor uint8
-	Patch uint8
+	Major Uint8
+	Minor Uint8
+	Patch Uint8
 }

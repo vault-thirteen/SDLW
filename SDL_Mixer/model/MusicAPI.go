@@ -1,5 +1,7 @@
 package mm
 
+import m "github.com/vault-thirteen/SDLW/SDL/model"
+
 // MusicAPI
 /*
 typedef enum
@@ -20,7 +22,7 @@ typedef enum
     MIX_MUSIC_LAST
 } Mix_MusicAPI;
 */
-type MusicAPI int
+type MusicAPI m.Int
 
 const (
 	MIX_MUSIC_CMD        = MusicAPI(0)

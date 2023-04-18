@@ -12,3 +12,23 @@ package m
 #endif
 */
 const SDL_VARIABLE_LENGTH_ARRAY = 1 //TODO: ???
+
+type Void byte
+type Char byte
+
+type Int int16
+type Uint uint16
+
+type Int8 int8
+type Uint8 uint8
+
+type Int16 int16
+type Uint16 uint16
+
+type Int32 int32
+type Uint32 uint32
+
+type Float float32
+type Double float64
+
+type SizeT int64

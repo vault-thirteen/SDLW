@@ -1,5 +1,7 @@
 package mm
 
+import m "github.com/vault-thirteen/SDLW/SDL/model"
+
 // MusicType
 /*
 typedef enum {
@@ -16,7 +18,7 @@ typedef enum {
     MUS_OPUS
 } Mix_MusicType;
 */
-type MusicType int
+type MusicType m.Int
 
 const (
 	MUS_NONE           = MusicType(0)

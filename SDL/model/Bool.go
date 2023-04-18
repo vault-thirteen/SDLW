@@ -2,7 +2,7 @@ package m
 
 // Bool
 // SDL_stdinc.h
-type Bool int
+type Bool Int
 
 const (
 	FALSE = Bool(0)

@@ -16,13 +16,13 @@ typedef struct SDL_AudioSpec
 } SDL_AudioSpec;
 */
 type AudioSpec struct {
-	Freq     int
+	Freq     Int
 	Format   AudioFormat
-	Channels uint8
-	Silence  uint8
-	Samples  uint16
-	Padding  uint16
-	Size     uint32
+	Channels Uint8
+	Silence  Uint8
+	Samples  Uint16
+	Padding  Uint16
+	Size     Uint32
 	Callback AudioCallback
-	Userdata uintptr
+	Userdata *Void
 }

@@ -39,7 +39,7 @@ typedef struct
 } Mix_MusicInterface;
 */
 type MusicInterface struct {
-	Tag    *byte
+	Tag    *m.Char
 	Api    MusicAPI
 	Type   MusicType
 	Loaded m.Bool

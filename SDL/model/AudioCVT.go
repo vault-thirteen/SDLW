@@ -1,7 +1,5 @@
 package m
 
-import bt "github.com/vault-thirteen/auxie/BasicTypes"
-
 const AUDIOCVT_MAX_FILTERS = 9
 
 // AudioCVT
@@ -22,15 +20,15 @@ typedef struct SDL_AudioCVT
 } SDL_AUDIOCVT_PACKED SDL_AudioCVT;
 */
 type AudioCVT struct {
-	Needed      int
+	Needed      Int
 	SrcFormat   AudioFormat
 	DstFormat   AudioFormat
-	RateIncr    bt.Double
-	Buf         *byte
-	Len         int
-	LenCvt      int
-	LenMult     int
-	LenRatio    bt.Double
+	RateIncr    Double
+	Buf         *Uint8
+	Len         Int
+	LenCvt      Int
+	LenMult     Int
+	LenRatio    Double
 	Filters     [AUDIOCVT_MAX_FILTERS + 1]AudioFilter
-	FilterIndex int
+	FilterIndex Int
 }

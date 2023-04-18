@@ -278,13 +278,13 @@ void SDL_AddHintCallback(const char *name,
 */
 // https://wiki.libsdl.org/SDL2/SDL_AddHintCallback
 //TODO: Test this when callbacks are fixed in Golang.
-func AddHintCallback(name string, callback uintptr, userdata uintptr) {
+func AddHintCallback(name string, callback uintptr, userdata *m.Void) {
 	var err error
 	var cpName *byte
 	cpName, err = windows.BytePtrFromString(name)
 	mustBeNoError(err)
 
-	_, _, _ = syscall.SyscallN(fnAddHintCallback, uintptr(unsafe.Pointer(cpName)), callback, userdata)
+	_, _, _ = syscall.SyscallN(fnAddHintCallback, uintptr(unsafe.Pointer(cpName)), callback, uintptr(unsafe.Pointer(userdata)))
 }
 
 // DelHintCallback
@@ -295,13 +295,13 @@ void SDL_DelHintCallback(const char *name,
 */
 // https://wiki.libsdl.org/SDL2/SDL_DelHintCallback
 //TODO: Test this when callbacks are fixed in Golang.
-func DelHintCallback(name string, callback uintptr, userdata uintptr) {
+func DelHintCallback(name string, callback uintptr, userdata *m.Void) {
 	var err error
 	var cpName *byte
 	cpName, err = windows.BytePtrFromString(name)
 	mustBeNoError(err)
 
-	_, _, _ = syscall.SyscallN(fnDelHintCallback, uintptr(unsafe.Pointer(cpName)), callback, userdata)
+	_, _, _ = syscall.SyscallN(fnDelHintCallback, uintptr(unsafe.Pointer(cpName)), callback, uintptr(unsafe.Pointer(userdata)))
 }
 
 // ClearHints

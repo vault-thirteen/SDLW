@@ -16,6 +16,6 @@ type DataQueue struct {
 	Head        *DataQueuePacket
 	Tail        *DataQueuePacket
 	Pool        *DataQueuePacket
-	PacketSize  uint // 64-bit DLL must be used.
-	QueuedBytes uint // 64-bit DLL must be used.
+	PacketSize  SizeT // 64-bit DLL must be used.
+	QueuedBytes SizeT // 64-bit DLL must be used.
 }

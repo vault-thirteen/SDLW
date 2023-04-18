@@ -1,7 +1,5 @@
 package m
 
-import bt "github.com/vault-thirteen/auxie/BasicTypes"
-
 // AudioStream
 /*
 struct _SDL_AudioStream
@@ -41,25 +39,25 @@ type AudioStream struct {
 	CvtAfterResampling      AudioCVT
 	Queue                   *DataQueue
 	FirstRun                Bool
-	StagingBuffer           *uint8
-	StagingBufferSize       int
-	StagingBufferFilled     int
-	WorkBufferBase          *uint8
-	WorkBufferLen           int
-	SrcSampleFrameSize      int
+	StagingBuffer           *Uint8
+	StagingBufferSize       Int
+	StagingBufferFilled     Int
+	WorkBufferBase          *Uint8
+	WorkBufferLen           Int
+	SrcSampleFrameSize      Int
 	SrcFormat               AudioFormat
-	SrcChannels             uint8
-	SrcRate                 int
-	DstSampleFrameSize      int
+	SrcChannels             Uint8
+	SrcRate                 Int
+	DstSampleFrameSize      Int
 	DstFormat               AudioFormat
-	DstChannels             uint8
-	DstRate                 int
-	RateIncr                bt.Double
-	PreResampleChannels     uint8
-	Packetlen               int
-	ResamplerPaddingSamples int
-	ResamplerPadding        *float32
-	ResamplerState          *byte
+	DstChannels             Uint8
+	DstRate                 Int
+	RateIncr                Double
+	PreResampleChannels     Uint8
+	Packetlen               Int
+	ResamplerPaddingSamples Int
+	ResamplerPadding        *Float
+	ResamplerState          *Void
 	ResamplerFunc           ResampleAudioStreamFunc
 	ResetResamplerFunc      ResetAudioStreamResamplerFunc
 	CleanupResamplerFunc    CleanupAudioStreamResamplerFunc

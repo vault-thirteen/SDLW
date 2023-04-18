@@ -44,15 +44,15 @@ const (
 // GetNumAudioDrivers
 // int SDL_GetNumAudioDrivers(void);
 // https://wiki.libsdl.org/SDL2/SDL_GetNumAudioDrivers
-func GetNumAudioDrivers() int {
+func GetNumAudioDrivers() m.Int {
 	ret, _, _ := syscall.SyscallN(fnGetNumAudioDrivers)
-	return int(ret)
+	return m.Int(ret)
 }
 
 // GetAudioDriver
 // const char* SDL_GetAudioDriver(int index);
 // https://wiki.libsdl.org/SDL2/SDL_GetAudioDriver
-func GetAudioDriver(index int) string {
+func GetAudioDriver(index m.Int) string {
 	ret, _, _ := syscall.SyscallN(fnGetAudioDriver, uintptr(index))
 	return windows.BytePtrToString((*byte)(unsafe.Pointer(ret)))
 }
@@ -60,14 +60,14 @@ func GetAudioDriver(index int) string {
 // AudioInit
 // int SDL_AudioInit(const char *driver_name);
 // https://wiki.libsdl.org/SDL2/SDL_AudioInit
-func AudioInit(driverName string) int {
+func AudioInit(driverName string) m.Int {
 	var err error
 	var cpDriverName *byte
 	cpDriverName, err = windows.BytePtrFromString(driverName)
 	mustBeNoError(err)
 
 	ret, _, _ := syscall.SyscallN(fnAudioInit, uintptr(unsafe.Pointer(cpDriverName)))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // AudioQuit
@@ -91,17 +91,17 @@ int SDL_OpenAudio(SDL_AudioSpec * desired,
                   SDL_AudioSpec * obtained);
 */
 // https://wiki.libsdl.org/SDL2/SDL_OpenAudio
-func OpenAudio(desired *m.AudioSpec, obtained *m.AudioSpec) int {
+func OpenAudio(desired *m.AudioSpec, obtained *m.AudioSpec) m.Int {
 	ret, _, _ := syscall.SyscallN(fnOpenAudio, uintptr(unsafe.Pointer(desired)), uintptr(unsafe.Pointer(obtained)))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // GetNumAudioDevices
 // int SDL_GetNumAudioDevices(int iscapture);
 // https://wiki.libsdl.org/SDL2/SDL_GetNumAudioDevices
-func GetNumAudioDevices(isCapture int) int {
+func GetNumAudioDevices(isCapture m.Int) m.Int {
 	ret, _, _ := syscall.SyscallN(fnGetNumAudioDevices, uintptr(isCapture))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // GetAudioDeviceName
@@ -110,7 +110,7 @@ const char* SDL_GetAudioDeviceName(int index,
                                    int iscapture);
 */
 // https://wiki.libsdl.org/SDL2/SDL_GetAudioDeviceName
-func GetAudioDeviceName(index int, isCapture int) string {
+func GetAudioDeviceName(index m.Int, isCapture m.Int) string {
 	ret, _, _ := syscall.SyscallN(fnGetAudioDeviceName, uintptr(index), uintptr(isCapture))
 	return windows.BytePtrToString((*byte)(unsafe.Pointer(ret)))
 }
@@ -122,9 +122,9 @@ int SDL_GetAudioDeviceSpec(int index,
                            SDL_AudioSpec *spec);
 */
 // https://wiki.libsdl.org/SDL2/SDL_GetAudioDeviceSpec
-func GetAudioDeviceSpec(index int, isCapture int, spec *m.AudioSpec) int {
+func GetAudioDeviceSpec(index m.Int, isCapture m.Int, spec *m.AudioSpec) m.Int {
 	ret, _, _ := syscall.SyscallN(fnGetAudioDeviceSpec, uintptr(index), uintptr(isCapture), uintptr(unsafe.Pointer(spec)))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // GetDefaultAudioInfo
@@ -134,9 +134,9 @@ int SDL_GetDefaultAudioInfo(char **name,
                             int iscapture);
 */
 // https://wiki.libsdl.org/SDL2/SDL_GetDefaultAudioInfo
-func GetDefaultAudioInfo(name uintptr, spec *m.AudioSpec, isCapture int) int {
-	ret, _, _ := syscall.SyscallN(fnGetDefaultAudioInfo, name, uintptr(unsafe.Pointer(spec)), uintptr(isCapture))
-	return int(ret)
+func GetDefaultAudioInfo(name **m.Char, spec *m.AudioSpec, isCapture m.Int) m.Int {
+	ret, _, _ := syscall.SyscallN(fnGetDefaultAudioInfo, uintptr(unsafe.Pointer(name)), uintptr(unsafe.Pointer(spec)), uintptr(isCapture))
+	return m.Int(ret)
 }
 
 // OpenAudioDevice
@@ -149,7 +149,7 @@ SDL_AudioDeviceID SDL_OpenAudioDevice(
                           int allowed_changes);
 */
 // https://wiki.libsdl.org/SDL2/SDL_OpenAudioDevice
-func OpenAudioDevice(device string, isCapture int, desired *m.AudioSpec, obtained *m.AudioSpec, allowedChanges int) m.AudioDeviceID {
+func OpenAudioDevice(device string, isCapture m.Int, desired *m.AudioSpec, obtained *m.AudioSpec, allowedChanges m.Int) m.AudioDeviceID {
 	var err error
 	var cpDevice *byte
 	cpDevice, err = windows.BytePtrFromString(device)
@@ -178,7 +178,7 @@ func GetAudioDeviceStatus(dev m.AudioDeviceID) m.AudioStatus {
 // PauseAudio
 // void SDL_PauseAudio(int pause_on);
 // https://wiki.libsdl.org/SDL2/SDL_PauseAudio
-func PauseAudio(pauseOn int) {
+func PauseAudio(pauseOn m.Int) {
 	_, _, _ = syscall.SyscallN(fnPauseAudio, uintptr(pauseOn))
 }
 
@@ -188,7 +188,7 @@ void SDL_PauseAudioDevice(SDL_AudioDeviceID dev,
                           int pause_on);
 */
 // https://wiki.libsdl.org/SDL2/SDL_PauseAudioDevice
-func PauseAudioDevice(dev m.AudioDeviceID, pauseOn int) {
+func PauseAudioDevice(dev m.AudioDeviceID, pauseOn m.Int) {
 	_, _, _ = syscall.SyscallN(fnPauseAudioDevice, uintptr(dev), uintptr(pauseOn))
 }
 
@@ -201,7 +201,7 @@ SDL_AudioSpec* SDL_LoadWAV_RW(SDL_RWops * src,
                               Uint32 * audio_len);
 */
 // https://wiki.libsdl.org/SDL2/SDL_LoadWAV_RW
-func LoadWAV_RW(src uintptr, freeSrc int, spec *m.AudioSpec, audioBuf **uint8, audioLen *uint32) *m.AudioSpec {
+func LoadWAV_RW(src uintptr, freeSrc m.Int, spec *m.AudioSpec, audioBuf **m.Uint8, audioLen *m.Uint32) *m.AudioSpec {
 	ret, _, _ := syscall.SyscallN(fnLoadWAV_RW, src, uintptr(freeSrc), uintptr(unsafe.Pointer(spec)), uintptr(unsafe.Pointer(audioBuf)), uintptr(unsafe.Pointer(audioLen)))
 	return (*m.AudioSpec)(unsafe.Pointer(ret))
 }
@@ -214,7 +214,7 @@ SDL_AudioSpec* SDL_LoadWAV(const char*    file,
                            Uint32*        audio_len)
 */
 // https://wiki.libsdl.org/SDL2/SDL_LoadWAV
-func LoadWAV(file string, spec *m.AudioSpec, audioBuf **byte, audioLen *uint32) *m.AudioSpec {
+func LoadWAV(file string, spec *m.AudioSpec, audioBuf **m.Uint8, audioLen *m.Uint32) *m.AudioSpec {
 	// #define SDL_LoadWAV(file, spec, audio_buf, audio_len) SDL_LoadWAV_RW(SDL_RWFromFile(file, "rb"),1, spec,audio_buf,audio_len)
 	// This is a C macro.
 	// This means, it is not directly accessible via the DLL file !
@@ -231,7 +231,7 @@ func LoadWAV(file string, spec *m.AudioSpec, audioBuf **byte, audioLen *uint32) 
 // FreeWAV
 // void SDL_FreeWAV(Uint8 * audio_buf);
 // https://wiki.libsdl.org/SDL2/SDL_FreeWAV
-func FreeWAV(audioBuf *byte) {
+func FreeWAV(audioBuf *m.Uint8) {
 	_, _, _ = syscall.SyscallN(fnFreeWAV, uintptr(unsafe.Pointer(audioBuf)))
 }
 
@@ -246,17 +246,17 @@ int SDL_BuildAudioCVT(SDL_AudioCVT * cvt,
                       int dst_rate);
 */
 // https://wiki.libsdl.org/SDL2/SDL_BuildAudioCVT
-func BuildAudioCVT(cvt *m.AudioCVT, srcFormat m.AudioFormat, srcChannels uint8, srcRate int, dstFormat m.AudioFormat, dstChannels uint8, dstRate int) int {
+func BuildAudioCVT(cvt *m.AudioCVT, srcFormat m.AudioFormat, srcChannels m.Uint8, srcRate m.Int, dstFormat m.AudioFormat, dstChannels m.Uint8, dstRate m.Int) m.Int {
 	ret, _, _ := syscall.SyscallN(fnBuildAudioCVT, uintptr(unsafe.Pointer(cvt)), uintptr(srcFormat), uintptr(srcChannels), uintptr(srcRate), uintptr(dstFormat), uintptr(dstChannels), uintptr(dstRate))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // ConvertAudio
 // int SDL_ConvertAudio(SDL_AudioCVT * cvt);
 // https://wiki.libsdl.org/SDL2/SDL_ConvertAudio
-func ConvertAudio(cvt *m.AudioCVT) int {
+func ConvertAudio(cvt *m.AudioCVT) m.Int {
 	ret, _, _ := syscall.SyscallN(fnConvertAudio, uintptr(unsafe.Pointer(cvt)))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // NewAudioStream
@@ -269,7 +269,7 @@ SDL_AudioStream * SDL_NewAudioStream(const SDL_AudioFormat src_format,
                    const int dst_rate);
 */
 // https://wiki.libsdl.org/SDL2/SDL_NewAudioStream
-func NewAudioStream(srcFormat m.AudioFormat, srcChannels uint8, srcRate int, dstFormat m.AudioFormat, dstChannels uint8, dstRate int) *m.AudioStream {
+func NewAudioStream(srcFormat m.AudioFormat, srcChannels m.Uint8, srcRate m.Int, dstFormat m.AudioFormat, dstChannels m.Uint8, dstRate m.Int) *m.AudioStream {
 	ret, _, _ := syscall.SyscallN(fnNewAudioStream, uintptr(srcFormat), uintptr(srcChannels), uintptr(srcRate), uintptr(dstFormat), uintptr(dstChannels), uintptr(dstRate))
 	return (*m.AudioStream)(unsafe.Pointer(ret))
 }
@@ -277,33 +277,33 @@ func NewAudioStream(srcFormat m.AudioFormat, srcChannels uint8, srcRate int, dst
 // AudioStreamPut
 // int SDL_AudioStreamPut(SDL_AudioStream *stream, const void *buf, int len);
 // https://wiki.libsdl.org/SDL2/SDL_AudioStreamPut
-func AudioStreamPut(stream *m.AudioStream, buf *byte, len int) int {
+func AudioStreamPut(stream *m.AudioStream, buf *m.Void, len m.Int) m.Int {
 	ret, _, _ := syscall.SyscallN(fnAudioStreamPut, uintptr(unsafe.Pointer(stream)), uintptr(unsafe.Pointer(buf)), uintptr(len))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // AudioStreamGet
 // int SDL_AudioStreamGet(SDL_AudioStream *stream, void *buf, int len);
 // https://wiki.libsdl.org/SDL2/SDL_AudioStreamGet
-func AudioStreamGet(stream *m.AudioStream, buf *byte, len int) int {
+func AudioStreamGet(stream *m.AudioStream, buf *m.Void, len m.Int) m.Int {
 	ret, _, _ := syscall.SyscallN(fnAudioStreamGet, uintptr(unsafe.Pointer(stream)), uintptr(unsafe.Pointer(buf)), uintptr(len))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // AudioStreamAvailable
 // int SDL_AudioStreamAvailable(SDL_AudioStream *stream);
 // https://wiki.libsdl.org/SDL2/SDL_AudioStreamAvailable
-func AudioStreamAvailable(stream *m.AudioStream) int {
+func AudioStreamAvailable(stream *m.AudioStream) m.Int {
 	ret, _, _ := syscall.SyscallN(fnAudioStreamAvailable, uintptr(unsafe.Pointer(stream)))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // AudioStreamFlush
 // int SDL_AudioStreamFlush(SDL_AudioStream *stream);
 // https://wiki.libsdl.org/SDL2/SDL_AudioStreamFlush
-func AudioStreamFlush(stream *m.AudioStream) int {
+func AudioStreamFlush(stream *m.AudioStream) m.Int {
 	ret, _, _ := syscall.SyscallN(fnAudioStreamFlush, uintptr(unsafe.Pointer(stream)))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // AudioStreamClear
@@ -328,7 +328,7 @@ void SDL_MixAudio(Uint8 * dst, const Uint8 * src,
                   Uint32 len, int volume);
 */
 // https://wiki.libsdl.org/SDL2/SDL_MixAudio
-func MixAudio(dst *uint8, src *uint8, len uint32, volume int) {
+func MixAudio(dst *m.Uint8, src *m.Uint8, len m.Uint32, volume m.Int) {
 	_, _, _ = syscall.SyscallN(fnMixAudio, uintptr(unsafe.Pointer(dst)), uintptr(unsafe.Pointer(src)), uintptr(len), uintptr(volume))
 }
 
@@ -340,32 +340,32 @@ void SDL_MixAudioFormat(Uint8 * dst,
                         Uint32 len, int volume);
 */
 // https://wiki.libsdl.org/SDL2/SDL_MixAudioFormat
-func MixAudioFormat(dst *uint8, src *uint8, format m.AudioFormat, len uint32, volume int) {
+func MixAudioFormat(dst *m.Uint8, src *m.Uint8, format m.AudioFormat, len m.Uint32, volume m.Int) {
 	_, _, _ = syscall.SyscallN(fnMixAudioFormat, uintptr(unsafe.Pointer(dst)), uintptr(unsafe.Pointer(src)), uintptr(format), uintptr(len), uintptr(volume))
 }
 
 // QueueAudio
 // int SDL_QueueAudio(SDL_AudioDeviceID dev, const void *data, Uint32 len);
 // https://wiki.libsdl.org/SDL2/SDL_QueueAudio
-func QueueAudio(dev m.AudioDeviceID, data *byte, len uint32) int {
+func QueueAudio(dev m.AudioDeviceID, data *m.Uint8, len m.Uint32) m.Int {
 	ret, _, _ := syscall.SyscallN(fnQueueAudio, uintptr(dev), uintptr(unsafe.Pointer(data)), uintptr(len))
-	return int(ret)
+	return m.Int(ret)
 }
 
 // DequeueAudio
 // Uint32 SDL_DequeueAudio(SDL_AudioDeviceID dev, void *data, Uint32 len);
 // https://wiki.libsdl.org/SDL2/SDL_DequeueAudio
-func DequeueAudio(dev m.AudioDeviceID, data *byte, len uint32) uint32 {
+func DequeueAudio(dev m.AudioDeviceID, data *m.Void, len m.Uint32) m.Uint32 {
 	ret, _, _ := syscall.SyscallN(fnDequeueAudio, uintptr(dev), uintptr(unsafe.Pointer(data)), uintptr(len))
-	return uint32(ret)
+	return m.Uint32(ret)
 }
 
 // GetQueuedAudioSize
 // Uint32 SDL_GetQueuedAudioSize(SDL_AudioDeviceID dev);
 // https://wiki.libsdl.org/SDL2/SDL_GetQueuedAudioSize
-func GetQueuedAudioSize(dev m.AudioDeviceID) uint32 {
+func GetQueuedAudioSize(dev m.AudioDeviceID) m.Uint32 {
 	ret, _, _ := syscall.SyscallN(fnGetQueuedAudioSize, uintptr(dev))
-	return uint32(ret)
+	return m.Uint32(ret)
 }
 
 // ClearQueuedAudio

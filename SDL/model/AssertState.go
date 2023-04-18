@@ -1,6 +1,6 @@
 package m
 
-type AssertState int
+type AssertState Int
 
 const (
 	ASSERTION_RETRY         = AssertState(0)

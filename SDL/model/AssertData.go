@@ -15,11 +15,11 @@ typedef struct SDL_AssertData
 */
 // SDL_assert.h
 type AssertData struct {
-	AlwaysIgnore int
-	TriggerCount uint
-	Condition    *byte
-	Filename     *byte
-	LineNum      int
-	Function     *byte
+	AlwaysIgnore Int
+	TriggerCount Uint
+	Condition    *Char
+	Filename     *Char
+	LineNum      Int
+	Function     *Char
 	Next         *AssertData
 }
