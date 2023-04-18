@@ -74,6 +74,7 @@ func getDeviceInfo(index m.Int, devMode m.Int) (dev *Device, err error) {
 	}, nil
 }
 
+// Duration gets the duration of audio.
 func Duration(as m.AudioSpec, len m.Uint32) time.Duration {
 	var sampleSize m.Uint32 = m.Uint32(sdl.AUDIO_BITSIZE(m.Uint16(as.Format))) / 8
 	var sampleCount m.Uint32 = len / sampleSize
