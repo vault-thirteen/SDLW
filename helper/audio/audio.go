@@ -1,6 +1,8 @@
 package audio
 
 import (
+	"time"
+
 	"github.com/vault-thirteen/SDLW/SDL"
 	m "github.com/vault-thirteen/SDLW/SDL/model"
 )
@@ -70,4 +72,17 @@ func getDeviceInfo(index m.Int, devMode m.Int) (dev *Device, err error) {
 		Name:  deviceName,
 		Spec:  &deviceSpec,
 	}, nil
+}
+
+func Duration(as m.AudioSpec, len m.Uint32) time.Duration {
+	var sampleSize m.Uint32 = m.Uint32(sdl.AUDIO_BITSIZE(m.Uint16(as.Format))) / 8
+	var sampleCount m.Uint32 = len / sampleSize
+	var sampleLen m.Uint32
+	if as.Channels > 0 {
+		sampleLen = sampleCount / m.Uint32(as.Channels)
+	} else {
+		sampleLen = sampleCount
+	}
+	var seconds = m.Double(sampleLen) / m.Double(as.Freq)
+	return time.Duration(m.Double(time.Second) * seconds)
 }

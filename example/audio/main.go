@@ -108,7 +108,8 @@ func playSound(device *audio.Device) (err error) {
 	}
 	sdl.PauseAudioDevice(deviceId, 0)
 
-	time.Sleep(time.Second * 3) //TODO:How to get length of audio ?
+	duration := audio.Duration(wavSpec, wavLength)
+	time.Sleep(duration)
 
 	return nil
 }
