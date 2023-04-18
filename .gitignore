@@ -1,6 +1,6 @@
 .idea
-*.exe
+.dev
 vendor
+*.exe
 *.dll
 *.lib
-.dev
