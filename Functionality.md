@@ -395,7 +395,7 @@
 <!-- -->
         <tr>
             <td align="center">&#9746;</td>
-            <td rowspan=8 valign="top">Audio</td>
+            <td rowspan=90 valign="top">Audio</td>
             <td>Mix_Linked_Version</td>
             <td>SDL_mixer.h</td>
             <td></td>
@@ -404,7 +404,89 @@
         <tr><td align="center">&#9746;</td><td>Mix_Quit</td><td>SDL_mixer.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>Mix_OpenAudio</td><td>SDL_mixer.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>Mix_OpenAudioDevice</td><td>SDL_mixer.h</td><td></td></tr>
-        <tr><td align="center">&#9744;</td><td>...</td><td>SDL_mixer.h</td><td>TODO</td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_QuerySpec</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_AllocateChannels</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_LoadWAV_RW</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_LoadWAV</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_LoadMUS</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_LoadMUS_RW</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_LoadMUSType_RW</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_QuickLoad_WAV</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_QuickLoad_RAW</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FreeChunk</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FreeMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetNumChunkDecoders</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetChunkDecoder</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_HasChunkDecoder</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetNumMusicDecoders</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicDecoder</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_HasMusicDecoder</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicType</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicTitle</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicTitleTag</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicArtistTag</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicAlbumTag</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicCopyrightTag</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicHookData</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_RegisterEffect</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_UnregisterEffect</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_UnregisterAllEffects</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetPanning</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetPosition</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetDistance</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetReverseStereo</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_ReserveChannels</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GroupChannel</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GroupChannels</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GroupAvailable</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GroupCount</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GroupOldest</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GroupNewer</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_PlayChannel</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_PlayChannelTimed</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_PlayMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadeInMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadeInMusicPos</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadeInChannel</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadeInChannelTimed</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_Volume</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_VolumeChunk</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_VolumeMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicVolume</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_MasterVolume</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_HaltChannel</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_HaltGroup</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_HaltMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_ExpireChannel</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadeOutChannel</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadeOutGroup</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadeOutMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadingMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_FadingChannel</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_Pause</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_Resume</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_Paused</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_PauseMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_ResumeMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_RewindMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_PausedMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_ModMusicJumpToOrder</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetMusicPosition</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicPosition</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_MusicDuration</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicLoopStartTime</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicLoopEndTime</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetMusicLoopLengthTime</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_Playing</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_PlayingMusic</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetMusicCMD</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetSynchroValue</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetSynchroValue</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetSoundFonts</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetSoundFonts</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_SetTimidityCfg</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetTimidityCfg</td><td>SDL_mixer.h</td><td></td></tr>
+        <tr><td align="center">&#9744;</td><td>Mix_GetChunk</td><td>SDL_mixer.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>Mix_CloseAudio</td><td>SDL_mixer.h</td><td></td></tr>
         <tr><td align="center">&#9746;</td><td>Mix_GetError</td><td>SDL_mixer.h</td><td>Calls SDL_GetError.</td></tr>
     </tbody>
