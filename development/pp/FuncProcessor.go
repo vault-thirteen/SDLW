@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	TypeNameVoid = "void"
+	TypeNameVoid   = "void"
+	TypeNameString = "string"
 )
 
 // FuncProcessor is a C function processor.

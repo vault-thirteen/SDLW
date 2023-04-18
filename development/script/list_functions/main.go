@@ -79,11 +79,15 @@ func showFuncData(filePath string, fps *pp.FuncProcessorSettings) (err error) {
 		return err
 	}
 
-	fmt.Println("List of Go functions:")
-	for _, fd := range fds {
-		fmt.Println(fd.Go.Name.Original)
-	}
+	fmt.Println("/* List of Go function names */")
+	pp.ListGoFuncNames(fds)
 	fmt.Println()
+
+	fmt.Println("/* Go draft wrapper functions */")
+	err = pp.PrintGoSysCallWrapperDrafts(fds)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

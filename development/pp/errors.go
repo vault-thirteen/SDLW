@@ -10,4 +10,5 @@ const (
 	ErrNoArgs                  = "no args"
 	ErrFmtNoArgs               = ErrNoArgs + ": %s"
 	ErrUnsupportedArgumentText = "unsupported argument text: %s"
+	ErrMultipleReturnedValues  = "multiple returned values"
 )
