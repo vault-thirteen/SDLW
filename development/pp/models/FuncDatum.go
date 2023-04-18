@@ -1,4 +1,4 @@
-package c
+package models
 
 type FuncDatum struct {
 	SourceCode     []string
