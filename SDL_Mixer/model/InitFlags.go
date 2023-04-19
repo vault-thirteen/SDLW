@@ -14,7 +14,7 @@ typedef enum
 	    MIX_INIT_OPUS   = 0x00000040
 	} MIX_InitFlags;
 */
-type InitFlags m.Int
+type InitFlags = m.Int
 
 const (
 	INIT_FLAC = InitFlags(0x00000001)

@@ -116,8 +116,23 @@ func playSound(device *audio.Device) (err error) {
 
 func playMusic(device *audio.Device) (err error) {
 	// Load an MP3 file.
-	//filePath := `D:\Temp\1\music.mp3`
-	//Mix_Init
+	filePath := `D:\Temp\1\music.mp3`
+
+	if sdlm.OpenAudioDevice(48000, sdl.AUDIO_S16LSB, 2, 2048, device.Name, sdl.AUDIO_ALLOW_ANY_CHANGE) != 0 {
+		return sdlm.GetError()
+	}
+	defer sdl.CloseAudio()
+
+	music := sdlm.LoadMUS(filePath)
+	if music == nil {
+		return sdlm.GetError()
+	}
+	defer sdlm.FreeMusic(music)
+
+	if sdlm.PlayMusic(music, 1) != 0 {
+		return sdlm.GetError()
+	}
+	time.Sleep(time.Second * 10) //TODO
 
 	return nil
 }
