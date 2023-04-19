@@ -29,9 +29,8 @@ func mustBeNoError(err error) {
 
 func work() (err error) {
 	// Initialization and status check.
-	err = sdl.Init(sdl.INIT_EVERYTHING)
-	if err != nil {
-		return err
+	if sdl.Init(sdl.INIT_EVERYTHING) != 0 {
+		return sdl.GetError()
 	}
 	defer sdl.Quit()
 
@@ -61,7 +60,7 @@ func work() (err error) {
 	sdl.Log("Hello, World ! N=%d.", 123)
 
 	// Querying SDL Version.
-	fmt.Println(sdl.GetVersion())
+	fmt.Println(sdl.GetVersion().Text())
 	fmt.Println(sdl.GetRevision())
 
 	return nil

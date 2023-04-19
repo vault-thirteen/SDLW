@@ -47,9 +47,8 @@ func work() (err error) {
 	fmt.Println(fmt.Sprintf("SDL Mixer Version: %v.", sdlm.Linked_Version().Text()))
 
 	// Initialization of SDL.
-	err = sdl.Init(sdl.INIT_AUDIO)
-	if err != nil {
-		return err
+	if sdl.Init(sdl.INIT_AUDIO) != 0 {
+		return sdl.GetError()
 	}
 	defer sdl.Quit()
 	sdlInitStatus := sdl.WasInit(0)
@@ -145,7 +144,7 @@ func playMusic(device *audio.Device) (err error) {
 	if sdlm.PlayMusic(music, 1) != 0 {
 		return sdlm.GetError()
 	}
-	time.Sleep(time.Second * 20) //TODO
+	time.Sleep(time.Second * 10) //TODO
 
 	return nil
 }

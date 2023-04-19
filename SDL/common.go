@@ -218,22 +218,6 @@ func LoadLibrary(dllFile string) (err error) {
 	return nil
 }
 
-// checkError checks error when necessary.
-func checkError(ret uintptr) (err error) {
-	if int(ret) == 0 {
-		return nil
-	}
-
-	return GetError()
-}
-
-// mustBeNoError panics if an error occurs.
-func mustBeNoError(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
-
 // BytePtrFromStringP converts a Go string into a C string.
 // If something goes wrong, it panics.
 func BytePtrFromStringP(s string) (cpS *byte) {
@@ -241,6 +225,13 @@ func BytePtrFromStringP(s string) (cpS *byte) {
 	cpS, err = windows.BytePtrFromString(s)
 	mustBeNoError(err)
 	return cpS
+}
+
+// mustBeNoError panics if an error occurs.
+func mustBeNoError(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
 
 // GetFnGetError gets the handle of SDL 'GetError' function.

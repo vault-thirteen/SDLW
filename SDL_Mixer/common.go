@@ -225,24 +225,13 @@ func LoadLibrary(dllFile string, extFuncs *ExternalFunctions) (err error) {
 	return nil
 }
 
-// saveExternalFunctions saves external functions.
-func saveExternalFunctions(extFuncs *ExternalFunctions) (err error) {
-	if extFuncs == nil {
-		return errors.New(ErrExternalFunctionsNotSet)
-	}
-
-	extFnGetError = extFuncs.ExtFnGetError
-
-	return nil
-}
-
-// checkError checks error when necessary.
-func checkError(ret uintptr) (err error) {
-	if int(ret) == 0 {
-		return nil
-	}
-
-	return GetError()
+// BytePtrFromStringP converts a Go string into a C string.
+// If something goes wrong, it panics.
+func BytePtrFromStringP(s string) (cpS *byte) {
+	var err error
+	cpS, err = windows.BytePtrFromString(s)
+	mustBeNoError(err)
+	return cpS
 }
 
 // mustBeNoError panics if an error occurs.
@@ -252,11 +241,13 @@ func mustBeNoError(err error) {
 	}
 }
 
-// BytePtrFromStringP converts a Go string into a C string.
-// If something goes wrong, it panics.
-func BytePtrFromStringP(s string) (cpS *byte) {
-	var err error
-	cpS, err = windows.BytePtrFromString(s)
-	mustBeNoError(err)
-	return cpS
+// saveExternalFunctions saves external functions.
+func saveExternalFunctions(extFuncs *ExternalFunctions) (err error) {
+	if extFuncs == nil {
+		return errors.New(ErrExternalFunctionsNotSet)
+	}
+
+	extFnGetError = extFuncs.ExtFnGetError
+
+	return nil
 }

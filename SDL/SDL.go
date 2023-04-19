@@ -22,40 +22,30 @@ const (
 		INIT_JOYSTICK | INIT_HAPTIC | INIT_GAMECONTROLLER | INIT_SENSOR
 )
 
-// Init
-// int SDL_Init(Uint32 flags);
-// https://wiki.libsdl.org/SDL2/SDL_Init
-func Init(flags m.Uint32) error {
+//extern DECLSPEC int SDLCALL SDL_Init(Uint32 flags);
+func Init(flags m.Uint32) m.Int {
 	ret, _, _ := syscall.SyscallN(fnInit, uintptr(flags))
-	return checkError(ret)
+	return (m.Int)(ret)
 }
 
-// InitSubSystem
-// int SDL_InitSubSystem(Uint32 flags);
-// https://wiki.libsdl.org/SDL2/SDL_InitSubSystem
-func InitSubSystem(flags m.Uint32) error {
+//extern DECLSPEC int SDLCALL SDL_InitSubSystem(Uint32 flags);
+func InitSubSystem(flags m.Uint32) m.Int {
 	ret, _, _ := syscall.SyscallN(fnInitSubSystem, uintptr(flags))
-	return checkError(ret)
+	return (m.Int)(ret)
 }
 
-// QuitSubSystem
-// void SDL_QuitSubSystem(Uint32 flags);
-// https://wiki.libsdl.org/SDL2/SDL_QuitSubSystem
+//extern DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags);
 func QuitSubSystem(flags m.Uint32) {
 	_, _, _ = syscall.SyscallN(fnQuitSubSystem, uintptr(flags))
 }
 
-// WasInit
-// Uint32 SDL_WasInit(Uint32 flags);
-// https://wiki.libsdl.org/SDL2/SDL_WasInit
-func WasInit(flags m.Uint32) (status m.Uint32) {
+//extern DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags);
+func WasInit(flags m.Uint32) m.Uint32 {
 	ret, _, _ := syscall.SyscallN(fnWasInit, uintptr(flags))
-	return m.Uint32(ret)
+	return (m.Uint32)(ret)
 }
 
-// Quit
-// void SDL_Quit(void);
-// https://wiki.libsdl.org/SDL2/SDL_Quit
+//extern DECLSPEC void SDLCALL SDL_Quit(void);
 func Quit() {
 	_, _, _ = syscall.SyscallN(fnQuit)
 }
