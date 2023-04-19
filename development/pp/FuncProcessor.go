@@ -20,14 +20,14 @@ type FuncProcessor struct {
 }
 
 // NewFuncProcessor is a FuncProcessor's constructor.
-func NewFuncProcessor(fps *FuncProcessorSettings) (fp *FuncProcessor, err error) {
+func NewFuncProcessor(fps *models.FuncProcessorSettings) (fp *FuncProcessor, err error) {
 	if fps == nil {
-		return nil, errors.New(ErrNoSettings)
+		return nil, errors.New(models.ErrNoSettings)
 	}
 
 	fp = &FuncProcessor{
-		funcNamePrefix:   fps.funcNamePrefix,
-		cToGoTypeMapping: fps.cToGoTypeMapping,
+		funcNamePrefix:   fps.FuncNamePrefix,
+		cToGoTypeMapping: fps.CToGoTypeMapping,
 	}
 
 	return fp, nil
@@ -67,7 +67,7 @@ func (fp *FuncProcessor) CToGo(fds []*models.FuncData) (err error) {
 // cToGoReturnedValues converts C returned values into Go returned values.
 func (fp *FuncProcessor) cToGoReturnedValues(fd *models.FuncData) (goRetValues []*models.Argument, err error) {
 	if fd == nil {
-		return nil, errors.New(ErrNoFuncData)
+		return nil, errors.New(models.ErrNoFuncData)
 	}
 
 	goRetValues = make([]*models.Argument, 0, len(fd.C.ReturnedValues))
@@ -81,7 +81,7 @@ func (fp *FuncProcessor) cToGoReturnedValues(fd *models.FuncData) (goRetValues [
 
 		_, typeMappingExists = fp.cToGoTypeMapping[cRV.Type.Original]
 		if !typeMappingExists {
-			return nil, fmt.Errorf(ErrNoTypeMapping, cRV.Type.Original)
+			return nil, fmt.Errorf(models.ErrNoTypeMapping, cRV.Type.Original)
 		}
 
 		goRV = &models.Argument{
@@ -102,7 +102,7 @@ func (fp *FuncProcessor) cToGoReturnedValues(fd *models.FuncData) (goRetValues [
 // cToGoArguments converts C arguments into Go arguments.
 func (fp *FuncProcessor) cToGoArguments(fd *models.FuncData) (goArgs []*models.Argument, err error) {
 	if fd == nil {
-		return nil, errors.New(ErrNoFuncData)
+		return nil, errors.New(models.ErrNoFuncData)
 	}
 
 	goArgs = make([]*models.Argument, 0, len(fd.C.Arguments))
@@ -116,7 +116,7 @@ func (fp *FuncProcessor) cToGoArguments(fd *models.FuncData) (goArgs []*models.A
 
 		_, typeMappingExists = fp.cToGoTypeMapping[cArg.Type.Original]
 		if !typeMappingExists {
-			return nil, fmt.Errorf(ErrNoTypeMapping, cArg.Type.Original)
+			return nil, fmt.Errorf(models.ErrNoTypeMapping, cArg.Type.Original)
 		}
 
 		goArg = &models.Argument{

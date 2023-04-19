@@ -17,7 +17,7 @@ const (
 
 // GetFuncDataFromFile gets information about C functions and converts it into
 // Go functions' data. This function is an entry point into this package.
-func GetFuncDataFromFile(filePath string, fps *FuncProcessorSettings) (fds []*models.FuncData, err error) {
+func GetFuncDataFromFile(filePath string, fps *models.FuncProcessorSettings) (fds []*models.FuncData, err error) {
 	log.Println(fmt.Sprintf("Parsing a file: %s.", filePath))
 
 	var fp *FuncParser
@@ -73,7 +73,7 @@ func PrintGoSysCallWrapperDrafts(fds []*models.FuncData) (err error) {
 // composeGoWrapperFuncDraft composes a draft of Go wrapper functions.
 func composeGoWrapperFuncDraft(fd *models.FuncData) (s string, err error) {
 	if fd == nil {
-		return s, errors.New(ErrNoFuncData)
+		return s, errors.New(models.ErrNoFuncData)
 	}
 
 	var sb strings.Builder
@@ -83,7 +83,7 @@ func composeGoWrapperFuncDraft(fd *models.FuncData) (s string, err error) {
 	}
 
 	if len(fd.Go.ReturnedValues) > 1 {
-		return "", errors.New(ErrMultipleReturnedValues)
+		return "", errors.New(models.ErrMultipleReturnedValues)
 	}
 
 	hasRetVal := len(fd.Go.ReturnedValues) > 0

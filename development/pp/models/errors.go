@@ -1,4 +1,4 @@
-package pp
+package models
 
 const (
 	ErrNoSettings              = "no settings"
@@ -11,4 +11,6 @@ const (
 	ErrFmtNoArgs               = ErrNoArgs + ": %s"
 	ErrUnsupportedArgumentText = "unsupported argument text: %s"
 	ErrMultipleReturnedValues  = "multiple returned values"
+	ErrMappingSyntaxError      = "mapping syntax error"
+	ErrDuplicateKey            = "duplicate key: %s"
 )

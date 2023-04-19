@@ -19,13 +19,13 @@ type FuncParser struct {
 }
 
 // NewFuncParser is a FuncParser's constructor.
-func NewFuncParser(fps *FuncProcessorSettings) (fp *FuncParser, err error) {
+func NewFuncParser(fps *models.FuncProcessorSettings) (fp *FuncParser, err error) {
 	if fps == nil {
-		return nil, errors.New(ErrNoSettings)
+		return nil, errors.New(models.ErrNoSettings)
 	}
 
 	fp = &FuncParser{
-		ignoredWords: fps.ignoredWords,
+		ignoredWords: fps.IgnoredWords,
 	}
 
 	return fp, nil
@@ -73,10 +73,10 @@ func (fp *FuncParser) ParseCFunctions(filePath string) (funcData []*models.FuncD
 		fd, err = fp.parseCLine(strings.TrimSpace(string(line)))
 		// Clear error for special cases.
 		if err != nil {
-			if strings.HasPrefix(err.Error(), ErrNoHeader) {
+			if strings.HasPrefix(err.Error(), models.ErrNoHeader) {
 				err = nil
 				log.Print(fmt.Sprintf("ignoring line without header: %s", string(line)))
-			} else if strings.HasPrefix(err.Error(), ErrNoArgs) {
+			} else if strings.HasPrefix(err.Error(), models.ErrNoArgs) {
 				err = nil
 				log.Print(fmt.Sprintf("ignoring line without arguments: %s", string(line)))
 			}
@@ -130,13 +130,13 @@ func (fp *FuncParser) parseCLine(line string) (fd *models.FuncData, err error) {
 func (fp *FuncParser) parseCHead(line string, dst *models.FuncData) (err error) {
 	parts := strings.Split(line, "(")
 	if len(parts) != 2 {
-		return fmt.Errorf(ErrFmtNoHeader, line)
+		return fmt.Errorf(models.ErrFmtNoHeader, line)
 	}
 	header := parts[0]
 
 	headerParts := strings.Split(header, " ")
 	if len(headerParts) < 2 {
-		return fmt.Errorf(ErrBadHeader, header)
+		return fmt.Errorf(models.ErrBadHeader, header)
 	}
 	funcName := headerParts[len(headerParts)-1]
 	funcRetTypeParts := headerParts[:len(headerParts)-1]
@@ -161,14 +161,14 @@ func (fp *FuncParser) parseCArgs(line string, dst *models.FuncData) (err error) 
 	parts := strings.Split(line, "(")
 	if len(parts) != 2 {
 		dst.C.Arguments = nil
-		return fmt.Errorf(ErrFmtNoHeader, line)
+		return fmt.Errorf(models.ErrFmtNoHeader, line)
 	}
 	nonHead := parts[1]
 
 	nonHeadParts := strings.Split(nonHead, ")")
 	if len(nonHeadParts) < 1 {
 		dst.C.Arguments = nil
-		return fmt.Errorf(ErrFmtNoArgs, line)
+		return fmt.Errorf(models.ErrFmtNoArgs, line)
 	}
 	argsPart := nonHeadParts[0]
 
@@ -229,10 +229,10 @@ func parseCArgSection(s string) (arg *models.Argument, err error) {
 			}
 			return arg, nil
 		} else {
-			return nil, fmt.Errorf(ErrUnsupportedArgumentText, s)
+			return nil, fmt.Errorf(models.ErrUnsupportedArgumentText, s)
 		}
 
 	default:
-		return nil, fmt.Errorf(ErrUnsupportedArgumentText, s)
+		return nil, fmt.Errorf(models.ErrUnsupportedArgumentText, s)
 	}
 }
