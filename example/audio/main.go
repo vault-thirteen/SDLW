@@ -39,8 +39,8 @@ func mustBeNoError(err error) {
 
 func work() (err error) {
 	// Show versions.
-	fmt.Println(fmt.Sprintf("SDL Version: %v.", sdl.GetVersion()))
-	fmt.Println(fmt.Sprintf("SDL Mixer Version: %v.", sdlm.Linked_Version()))
+	fmt.Println(fmt.Sprintf("SDL Version: %v.", sdl.GetVersion().Text()))
+	fmt.Println(fmt.Sprintf("SDL Mixer Version: %v.", sdlm.Linked_Version().Text()))
 
 	// Initialization of SDL.
 	err = sdl.Init(sdl.INIT_AUDIO)
@@ -132,7 +132,7 @@ func playMusic(device *audio.Device) (err error) {
 	if sdlm.PlayMusic(music, 1) != 0 {
 		return sdlm.GetError()
 	}
-	time.Sleep(time.Second * 10) //TODO
+	time.Sleep(time.Second * 20) //TODO
 
 	return nil
 }

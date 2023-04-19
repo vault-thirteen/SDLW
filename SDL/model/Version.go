@@ -1,5 +1,9 @@
 package m
 
+import (
+	"fmt"
+)
+
 // Version
 /*
 typedef struct SDL_version
@@ -14,4 +18,8 @@ type Version struct {
 	Major Uint8
 	Minor Uint8
 	Patch Uint8
+}
+
+func (v Version) Text() string {
+	return fmt.Sprintf("%d.%d.%d", v.Major, v.Minor, v.Patch)
 }
