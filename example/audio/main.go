@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"time"
@@ -10,8 +11,11 @@ import (
 	sdlm "github.com/vault-thirteen/SDLW/SDL_Mixer"
 	mm "github.com/vault-thirteen/SDLW/SDL_Mixer/model"
 	"github.com/vault-thirteen/SDLW/helper/audio"
+	"github.com/vault-thirteen/SDLW/helper/cpu"
 	"github.com/vault-thirteen/SDLW/win32"
 )
+
+const ErrEndianness = "endianness error"
 
 func main() {
 	var err error
@@ -115,7 +119,17 @@ func playSound(device *audio.Device) (err error) {
 }
 
 func playMusic(device *audio.Device) (err error) {
-	if sdlm.OpenAudioDevice(48000, sdl.AUDIO_S16LSB, 2, 2048, device.Name, sdl.AUDIO_ALLOW_ANY_CHANGE) != 0 {
+	var format m.Uint16
+	switch cpu.HardwareEndianness() {
+	case cpu.EndiannessLittleEndian:
+		format = sdl.AUDIO_S16LSB
+	case cpu.EndiannessBigEndian:
+		format = sdl.AUDIO_S16MSB
+	default:
+		return errors.New(ErrEndianness)
+	}
+
+	if sdlm.OpenAudioDevice(48000, format, 2, 2048, device.Name, sdl.AUDIO_ALLOW_ANY_CHANGE) != 0 {
 		return sdlm.GetError()
 	}
 	defer sdl.CloseAudio()
