@@ -36,10 +36,10 @@
         ["SDL_version*", "*m.Version"],
 
         ["Mix_Chunk*", "*mm.Chunk"],
-		["Mix_Fading", "mm.Fading"],
-		["Mix_EffectFunc_t", "mm.EffectFunc"],
-		["Mix_EffectDone_t", "mm.EffectDone"],
-		["Mix_Music*", "*mm.Music"],
-		["Mix_MusicType", "mm.MusicType"]
+        ["Mix_Fading", "mm.Fading"],
+        ["Mix_EffectFunc_t", "mm.EffectFunc"],
+        ["Mix_EffectDone_t", "mm.EffectDone"],
+        ["Mix_Music*", "*mm.Music"],
+        ["Mix_MusicType", "mm.MusicType"]
     ]
 }
