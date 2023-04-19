@@ -31,7 +31,7 @@
         ["double", "m.Double"],
         ["size_t", "m.SizeT"],
 
-        ["SDL_bool", "*m.Bool"],
+        ["SDL_bool", "m.Bool"],
         ["SDL_RWops*", "*m.RWops"],
         ["SDL_version*", "*m.Version"],
 

@@ -18,7 +18,19 @@ func RemoveDoubleSpaces(sIn string) (sOut string) {
 // DetachPointerMarks makes pointer symbols detached from other words.
 // Beware that this function can create some redundant spaces.
 func DetachPointerMarks(sIn string) (sOut string) {
-	return strings.ReplaceAll(sIn, "*", " * ")
+	sOut = sIn
+	sOut = strings.ReplaceAll(sOut, "*", " * ")
+	sOut = RemoveDoubleSpaces(strings.TrimSpace(sOut))
+
+	for {
+		if strings.Contains(sOut, "* *") {
+			sOut = strings.ReplaceAll(sOut, "* *", "**")
+		} else {
+			break
+		}
+	}
+
+	return sOut
 }
 
 // GlueParts concatenates string parts into a single string.

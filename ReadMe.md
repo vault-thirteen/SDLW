@@ -34,3 +34,7 @@ Note that the official documentation is very poor.
 
 ## Examples
 Code examples are available in the `example` folder.
+
+## TODO
+* C function pointers
+* Callbacks

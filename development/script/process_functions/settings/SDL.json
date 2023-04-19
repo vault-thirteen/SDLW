@@ -11,6 +11,7 @@
     [
         ["void", ""],
         ["void*", "*m.Void"],
+        ["void**", "**m.Void"],
         ["char", "m.Char"],
         ["char*", "string"],
         ["int", "m.Int"],
@@ -31,7 +32,11 @@
         ["double", "m.Double"],
         ["size_t", "m.SizeT"],
 
-        ["SDL_bool", "*m.Bool"],
+        ["SDL_bool", "m.Bool"],
+        ["SDL_AssertData", "m.AssertData"],
+        ["SDL_AssertData*", "*m.AssertData"],
+        ["SDL_AssertionHandler", "m.AssertionHandler"],
+        ["SDL_AssertState", "m.AssertState"],
         ["SDL_RWops*", "*m.RWops"],
         ["SDL_version*", "*m.Version"]
     ]

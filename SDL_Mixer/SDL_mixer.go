@@ -23,13 +23,10 @@ func Linked_Version() *m.Version {
 	return (*m.Version)(unsafe.Pointer(ret))
 }
 
-// Init
-// extern DECLSPEC int SDLCALL Mix_Init(int flags);
-// "It returns the flags successfully initialized, or 0 on failure."
-// https://wiki.libsdl.org/SDL3_mixer/Mix_Init
+//extern DECLSPEC int SDLCALL Mix_Init(int flags);
 func Init(flags m.Int) m.Int {
 	ret, _, _ := syscall.SyscallN(fnInit, uintptr(flags))
-	return m.Int(ret)
+	return (m.Int)(ret)
 }
 
 //extern DECLSPEC void SDLCALL Mix_Quit(void);
@@ -38,15 +35,15 @@ func Quit() {
 }
 
 //extern DECLSPEC int SDLCALL Mix_OpenAudio(int frequency, Uint16 format, int channels, int chunksize);
-func OpenAudio(frequency m.Int, format m.Uint16, channels m.Int, chunkSize m.Int) m.Int {
-	ret, _, _ := syscall.SyscallN(fnOpenAudio, uintptr(frequency), uintptr(format), uintptr(channels), uintptr(chunkSize))
-	return m.Int(ret)
+func OpenAudio(frequency m.Int, format m.Uint16, channels m.Int, chunksize m.Int) m.Int {
+	ret, _, _ := syscall.SyscallN(fnOpenAudio, uintptr(frequency), uintptr(format), uintptr(channels), uintptr(chunksize))
+	return (m.Int)(ret)
 }
 
 //extern DECLSPEC int SDLCALL Mix_OpenAudioDevice(int frequency, Uint16 format, int channels, int chunksize, const char* device, int allowed_changes);
-func OpenAudioDevice(frequency m.Int, format m.Uint16, channels m.Int, chunkSize m.Int, device string, allowedChanges m.Int) m.Int {
-	ret, _, _ := syscall.SyscallN(fnOpenAudioDevice, uintptr(frequency), uintptr(format), uintptr(channels), uintptr(chunkSize), uintptr(unsafe.Pointer(BytePtrFromStringP(device))), uintptr(allowedChanges))
-	return m.Int(ret)
+func OpenAudioDevice(frequency m.Int, format m.Uint16, channels m.Int, chunksize m.Int, device string, allowed_changes m.Int) m.Int {
+	ret, _, _ := syscall.SyscallN(fnOpenAudioDevice, uintptr(frequency), uintptr(format), uintptr(channels), uintptr(chunksize), uintptr(unsafe.Pointer(BytePtrFromStringP(device))), uintptr(allowed_changes))
+	return (m.Int)(ret)
 }
 
 //extern DECLSPEC int SDLCALL Mix_QuerySpec(int *frequency, Uint16 *format, int *channels);
@@ -86,8 +83,8 @@ func LoadMUS_RW(src uintptr, freesrc m.Int) *mm.Music {
 }
 
 //extern DECLSPEC Mix_Music * SDLCALL Mix_LoadMUSType_RW(SDL_RWops *src, Mix_MusicType type, int freesrc);
-func LoadMUSType_RW(src uintptr, musicType mm.MusicType, freesrc m.Int) *mm.Music {
-	ret, _, _ := syscall.SyscallN(fnLoadMUSType_RW, src, uintptr(musicType), uintptr(freesrc))
+func LoadMUSType_RW(src uintptr, musictype mm.MusicType, freesrc m.Int) *mm.Music {
+	ret, _, _ := syscall.SyscallN(fnLoadMUSType_RW, src, uintptr(musictype), uintptr(freesrc))
 	return (*mm.Music)(unsafe.Pointer(ret))
 }
 
@@ -126,9 +123,9 @@ func GetChunkDecoder(index m.Int) string {
 }
 
 //extern DECLSPEC SDL_bool SDLCALL Mix_HasChunkDecoder(const char *name);
-func HasChunkDecoder(name string) *m.Bool {
+func HasChunkDecoder(name string) m.Bool {
 	ret, _, _ := syscall.SyscallN(fnHasChunkDecoder, uintptr(unsafe.Pointer(BytePtrFromStringP(name))))
-	return (*m.Bool)(unsafe.Pointer(ret))
+	return (m.Bool)(ret)
 }
 
 //extern DECLSPEC int SDLCALL Mix_GetNumMusicDecoders(void);
@@ -144,9 +141,9 @@ func GetMusicDecoder(index m.Int) string {
 }
 
 //extern DECLSPEC SDL_bool SDLCALL Mix_HasMusicDecoder(const char *name);
-func HasMusicDecoder(name string) *m.Bool {
+func HasMusicDecoder(name string) m.Bool {
 	ret, _, _ := syscall.SyscallN(fnHasMusicDecoder, uintptr(unsafe.Pointer(BytePtrFromStringP(name))))
-	return (*m.Bool)(unsafe.Pointer(ret))
+	return (m.Bool)(ret)
 }
 
 //extern DECLSPEC Mix_MusicType SDLCALL Mix_GetMusicType(const Mix_Music *music);

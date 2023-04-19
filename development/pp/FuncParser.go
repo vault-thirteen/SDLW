@@ -218,7 +218,7 @@ func parseCArgSection(s string) (arg *models.Argument, err error) {
 
 	case 3:
 		// Name & pointer type ? Example: char * name.
-		if parts[1] == "*" {
+		if (parts[1] == "*") || (parts[1] == "**") {
 			arg = &models.Argument{
 				Type: models.Parameter{
 					Original: GlueParts([]string{parts[0], parts[1]}),
