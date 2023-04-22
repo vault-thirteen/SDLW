@@ -17,6 +17,8 @@ var funcs = []dll.FuncMapping{
 	{&fnQuit, "Quit"},
 	{&fnQuitSubSystem, "QuitSubSystem"},
 	{&fnSetMainReady, "SetMainReady"},
+	{&fnRegisterApp, "RegisterApp"},
+	{&fnUnregisterApp, "UnregisterApp"},
 	{&fnWasInit, "WasInit"},
 
 	// Configuration Variables.
@@ -120,6 +122,8 @@ var (
 	fnQuit          uintptr
 	fnQuitSubSystem uintptr
 	fnSetMainReady  uintptr
+	fnRegisterApp   uintptr
+	fnUnregisterApp uintptr
 	fnWasInit       uintptr
 
 	// Configuration Variables.

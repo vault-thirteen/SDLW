@@ -2,19 +2,27 @@ package sdl
 
 // SDL_main.h.
 
-import "syscall"
+import (
+	"syscall"
+	"unsafe"
 
-// SetMainReady
-// void SDL_SetMainReady(void);
-// https://wiki.libsdl.org/SDL2/SDL_SetMainReady
+	m "github.com/vault-thirteen/SDLW/SDL/model"
+)
+
+/* Automatically added functions */
+
+//extern DECLSPEC void SDLCALL SDL_SetMainReady(void);
 func SetMainReady() {
 	_, _, _ = syscall.SyscallN(fnSetMainReady)
 }
 
-// RegisterApp
-// Most applications do not need to, and should not, call this directly; SDL
-// will call it when initializing the video subsystem.
+//extern DECLSPEC int SDLCALL SDL_RegisterApp(const char *name, Uint32 style, void *hInst);
+func RegisterApp(name string, style m.Uint32, hInst *m.Void) m.Int {
+	ret, _, _ := syscall.SyscallN(fnRegisterApp, uintptr(unsafe.Pointer(BytePtrFromStringP(name))), uintptr(style), uintptr(unsafe.Pointer(hInst)))
+	return (m.Int)(ret)
+}
 
-// UnregisterApp
-// Most applications do not need to, and should not, call this directly; SDL
-// will call it when deinitializing the video subsystem.
+//extern DECLSPEC void SDLCALL SDL_UnregisterApp(void);
+func UnregisterApp() {
+	_, _, _ = syscall.SyscallN(fnUnregisterApp)
+}

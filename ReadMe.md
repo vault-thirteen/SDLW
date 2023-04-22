@@ -25,16 +25,9 @@ library much easier.
   * Note that Go code must not change C pointers, otherwise the program will 
 crash.
 
-## Supported Functionality
-[List of supported functions](./Functionality.md).
-
 ## SDL 2.0 API by Category
 https://wiki.libsdl.org/SDL2/APIByCategory  
 Note that the official documentation is very poor.
 
 ## Examples
 Code examples are available in the `example` folder.
-
-## TODO
-* C function pointers
-* Callbacks

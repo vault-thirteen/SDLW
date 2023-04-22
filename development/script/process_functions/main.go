@@ -53,9 +53,10 @@ func showFuncData(filePath string, fps *models.FuncProcessorSettings) (err error
 	fmt.Println("/* List of Go function names */")
 	pp.ListGoFuncNames(fds)
 	fmt.Println()
-
 	fmt.Println("/* Manually added functions */")
+	fmt.Println()
 	fmt.Println("/* Automatically added functions */")
+	fmt.Println()
 	err = pp.PrintGoSysCallWrapperDrafts(fds)
 	if err != nil {
 		return err
