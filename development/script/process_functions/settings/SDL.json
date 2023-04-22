@@ -46,7 +46,11 @@
     ["SDL_errorcode", "m.Errorcode"],
     ["SDL_HintPriority", "m.HintPriority"],
     ["SDL_HintCallback", "m.HintCallback"],
+    ["SDL_LogPriority", "m.LogPriority"],
+    ["SDL_LogOutputFunction", "m.LogOutputFunction"],
+    ["SDL_LogOutputFunction*", "*m.LogOutputFunction"],
     ["SDL_RWops*", "*m.RWops"],
-    ["SDL_version*", "*m.Version"]
+    ["SDL_version*", "*m.Version"],
+    ["va_list", "va_list"]
   ]
 }

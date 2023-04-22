@@ -9,37 +9,9 @@ import (
 	m "github.com/vault-thirteen/SDLW/SDL/model"
 )
 
-// LogSetAllPriority
-// void SDL_LogSetAllPriority(SDL_LogPriority priority);
-// https://wiki.libsdl.org/SDL2/SDL_LogSetAllPriority
-func LogSetAllPriority(priority m.LogPriority) {
-	_, _, _ = syscall.SyscallN(fnLogSetAllPriority, uintptr(priority))
-}
+const MAX_LOG_MESSAGE = 4096
 
-// LogSetPriority
-/*
-void SDL_LogSetPriority(int category,
-                        SDL_LogPriority priority);
-*/
-// https://wiki.libsdl.org/SDL2/SDL_LogSetPriority
-func LogSetPriority(category m.Int, priority m.LogPriority) {
-	_, _, _ = syscall.SyscallN(fnLogSetPriority, uintptr(category), uintptr(priority))
-}
-
-// LogGetPriority
-// SDL_LogPriority SDL_LogGetPriority(int category);
-// https://wiki.libsdl.org/SDL2/SDL_LogGetPriority
-func LogGetPriority(category m.Int) m.LogPriority {
-	ret, _, _ := syscall.SyscallN(fnLogGetPriority, uintptr(category))
-	return m.LogPriority(ret)
-}
-
-// LogResetPriorities
-// void SDL_LogResetPriorities(void);
-// https://wiki.libsdl.org/SDL2/SDL_LogResetPriorities
-func LogResetPriorities() {
-	_, _, _ = syscall.SyscallN(fnLogResetPriorities)
-}
+/* Manually added functions */
 
 // Log
 // void SDL_Log(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(1);
@@ -165,29 +137,40 @@ func LogMessage(category m.Int, priority m.LogPriority, fmt string, args ...uint
 	_, _, _ = syscall.SyscallN(fnLogMessage, argz...)
 }
 
-// LogMessageV
-/*
-void SDL_LogMessageV(int category,
-                     SDL_LogPriority priority,
-                     const char *fmt, va_list ap);
-*/
-// https://wiki.libsdl.org/SDL2/SDL_LogMessageV
-func LogMessageV(category m.Int, priority m.LogPriority, fmt string, ap uintptr) {
-	_, _, _ = syscall.SyscallN(fnLogMessageV, uintptr(category), uintptr(priority), uintptr(unsafe.Pointer(BytePtrFromStringP(fmt))), ap)
+/* Automatically added functions */
+
+//extern DECLSPEC void SDLCALL SDL_LogSetAllPriority(SDL_LogPriority priority);
+func LogSetAllPriority(priority m.LogPriority) {
+	_, _, _ = syscall.SyscallN(fnLogSetAllPriority, uintptr(priority))
 }
 
-// LogGetOutputFunction
-// void SDL_LogGetOutputFunction(SDL_LogOutputFunction *callback, void **userdata);
-// https://wiki.libsdl.org/SDL2/SDL_LogGetOutputFunction
-// TODO: Test this when callbacks are fixed in Golang.
-func LogGetOutputFunction(callback uintptr, userdata **m.Void) {
-	_, _, _ = syscall.SyscallN(fnLogGetOutputFunction, callback, uintptr(unsafe.Pointer(userdata)))
+//extern DECLSPEC void SDLCALL SDL_LogSetPriority(int category, SDL_LogPriority priority);
+func LogSetPriority(category m.Int, priority m.LogPriority) {
+	_, _, _ = syscall.SyscallN(fnLogSetPriority, uintptr(category), uintptr(priority))
 }
 
-// LogSetOutputFunction
-// void SDL_LogSetOutputFunction(SDL_LogOutputFunction callback, void *userdata);
-// https://wiki.libsdl.org/SDL2/SDL_LogSetOutputFunction
-// TODO: Test this when callbacks are fixed in Golang.
-func LogSetOutputFunction(callback uintptr, userdata *m.Void) {
-	_, _, _ = syscall.SyscallN(fnLogSetOutputFunction, callback, uintptr(unsafe.Pointer(userdata)))
+//extern DECLSPEC SDL_LogPriority SDLCALL SDL_LogGetPriority(int category);
+func LogGetPriority(category m.Int) m.LogPriority {
+	ret, _, _ := syscall.SyscallN(fnLogGetPriority, uintptr(category))
+	return (m.LogPriority)(ret)
+}
+
+//extern DECLSPEC void SDLCALL SDL_LogResetPriorities(void);
+func LogResetPriorities() {
+	_, _, _ = syscall.SyscallN(fnLogResetPriorities)
+}
+
+//extern DECLSPEC void SDLCALL SDL_LogMessageV(int category, SDL_LogPriority priority, const char *fmt, va_list ap);
+//func LogMessageV(category m.Int, priority m.LogPriority, fmt string, ap va_list) {
+//	_, _, _ = syscall.SyscallN(fnLogMessageV, uintptr(category), uintptr(priority), uintptr(unsafe.Pointer(BytePtrFromStringP(fmt))), uintptr(ap))
+//}
+
+//extern DECLSPEC void SDLCALL SDL_LogGetOutputFunction(SDL_LogOutputFunction *callback, void **userdata);
+func LogGetOutputFunction(callback *m.LogOutputFunction, userdata **m.Void) {
+	_, _, _ = syscall.SyscallN(fnLogGetOutputFunction, uintptr(unsafe.Pointer(callback)), uintptr(unsafe.Pointer(userdata)))
+}
+
+//extern DECLSPEC void SDLCALL SDL_LogSetOutputFunction(SDL_LogOutputFunction callback, void *userdata);
+func LogSetOutputFunction(callback m.LogOutputFunction, userdata *m.Void) {
+	_, _, _ = syscall.SyscallN(fnLogSetOutputFunction, uintptr(unsafe.Pointer(callback)), uintptr(unsafe.Pointer(userdata)))
 }
