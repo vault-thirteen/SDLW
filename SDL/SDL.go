@@ -22,6 +22,8 @@ const (
 		INIT_JOYSTICK | INIT_HAPTIC | INIT_GAMECONTROLLER | INIT_SENSOR
 )
 
+/* Automatically added functions */
+
 //extern DECLSPEC int SDLCALL SDL_Init(Uint32 flags);
 func Init(flags m.Uint32) m.Int {
 	ret, _, _ := syscall.SyscallN(fnInit, uintptr(flags))

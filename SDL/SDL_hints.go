@@ -185,6 +185,8 @@ const (
 	HINT_TRACKPAD_IS_TOUCH_ONLY                   = "SDL_TRACKPAD_IS_TOUCH_ONLY"
 )
 
+/* Automatically added functions */
+
 //extern DECLSPEC SDL_bool SDLCALL SDL_SetHintWithPriority(const char *name, const char *value, SDL_HintPriority priority);
 func SetHintWithPriority(name string, value string, priority m.HintPriority) m.Bool {
 	ret, _, _ := syscall.SyscallN(fnSetHintWithPriority, uintptr(unsafe.Pointer(BytePtrFromStringP(name))), uintptr(unsafe.Pointer(BytePtrFromStringP(value))), uintptr(priority))

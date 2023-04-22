@@ -9,6 +9,8 @@ import (
 	m "github.com/vault-thirteen/SDLW/SDL/model"
 )
 
+/* Automatically added functions */
+
 //extern DECLSPEC void SDLCALL SDL_SetAssertionHandler(SDL_AssertionHandler handler, void *userdata);
 func SetAssertionHandler(handler uintptr, userdata *m.Void) {
 	_, _, _ = syscall.SyscallN(fnSetAssertionHandler, handler, uintptr(unsafe.Pointer(userdata)))
