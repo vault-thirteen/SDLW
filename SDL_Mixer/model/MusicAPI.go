@@ -22,7 +22,7 @@ typedef enum
     MIX_MUSIC_LAST
 } Mix_MusicAPI;
 */
-type MusicAPI m.Int
+type MusicAPI = m.Int
 
 const (
 	MIX_MUSIC_CMD        = MusicAPI(0)

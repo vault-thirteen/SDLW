@@ -10,7 +10,7 @@ import m "github.com/vault-thirteen/SDLW/SDL/model"
 	    MIX_FADING_IN
 	} Mix_Fading;
 */
-type Fading m.Int
+type Fading = m.Int
 
 const (
 	MIX_NO_FADING  = Fading(0)

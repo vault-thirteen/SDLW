@@ -59,8 +59,8 @@ func AllocateChannels(numchans m.Int) m.Int {
 }
 
 //extern DECLSPEC Mix_Chunk * SDLCALL Mix_LoadWAV_RW(SDL_RWops *src, int freesrc);
-func LoadWAV_RW(src uintptr, freesrc m.Int) *mm.Chunk {
-	ret, _, _ := syscall.SyscallN(fnLoadWAV_RW, src, uintptr(freesrc))
+func LoadWAV_RW(src *m.RWops, freesrc m.Int) *mm.Chunk {
+	ret, _, _ := syscall.SyscallN(fnLoadWAV_RW, uintptr(unsafe.Pointer(src)), uintptr(freesrc))
 	return (*mm.Chunk)(unsafe.Pointer(ret))
 }
 
@@ -77,14 +77,14 @@ func LoadMUS(file string) *mm.Music {
 }
 
 //extern DECLSPEC Mix_Music * SDLCALL Mix_LoadMUS_RW(SDL_RWops *src, int freesrc);
-func LoadMUS_RW(src uintptr, freesrc m.Int) *mm.Music {
-	ret, _, _ := syscall.SyscallN(fnLoadMUS_RW, src, uintptr(freesrc))
+func LoadMUS_RW(src *m.RWops, freesrc m.Int) *mm.Music {
+	ret, _, _ := syscall.SyscallN(fnLoadMUS_RW, uintptr(unsafe.Pointer(src)), uintptr(freesrc))
 	return (*mm.Music)(unsafe.Pointer(ret))
 }
 
 //extern DECLSPEC Mix_Music * SDLCALL Mix_LoadMUSType_RW(SDL_RWops *src, Mix_MusicType type, int freesrc);
-func LoadMUSType_RW(src uintptr, musictype mm.MusicType, freesrc m.Int) *mm.Music {
-	ret, _, _ := syscall.SyscallN(fnLoadMUSType_RW, src, uintptr(musictype), uintptr(freesrc))
+func LoadMUSType_RW(src *m.RWops, musicType mm.MusicType, freesrc m.Int) *mm.Music {
+	ret, _, _ := syscall.SyscallN(fnLoadMUSType_RW, uintptr(unsafe.Pointer(src)), uintptr(musicType), uintptr(freesrc))
 	return (*mm.Music)(unsafe.Pointer(ret))
 }
 
@@ -189,14 +189,14 @@ func GetMusicHookData() *m.Void {
 }
 
 //extern DECLSPEC int SDLCALL Mix_RegisterEffect(int chan, Mix_EffectFunc_t f, Mix_EffectDone_t d, void *arg);
-func RegisterEffect(channel m.Int, f uintptr, d uintptr, arg *m.Void) m.Int {
-	ret, _, _ := syscall.SyscallN(fnRegisterEffect, uintptr(channel), f, d, uintptr(unsafe.Pointer(arg)))
+func RegisterEffect(channel m.Int, f mm.EffectFunc, d mm.EffectDone, arg *m.Void) m.Int {
+	ret, _, _ := syscall.SyscallN(fnRegisterEffect, uintptr(channel), uintptr(unsafe.Pointer(f)), uintptr(unsafe.Pointer(d)), uintptr(unsafe.Pointer(arg)))
 	return (m.Int)(ret)
 }
 
 //extern DECLSPEC int SDLCALL Mix_UnregisterEffect(int channel, Mix_EffectFunc_t f);
-func UnregisterEffect(channel m.Int, f uintptr) m.Int {
-	ret, _, _ := syscall.SyscallN(fnUnregisterEffect, uintptr(channel), f)
+func UnregisterEffect(channel m.Int, f mm.EffectFunc) m.Int {
+	ret, _, _ := syscall.SyscallN(fnUnregisterEffect, uintptr(channel), uintptr(unsafe.Pointer(f)))
 	return (m.Int)(ret)
 }
 

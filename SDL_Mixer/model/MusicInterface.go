@@ -46,4 +46,5 @@ type MusicInterface struct {
 	Opened m.Bool
 
 	// A lot of function pointers ...
+	Methods [23]uintptr
 }

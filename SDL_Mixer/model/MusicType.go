@@ -18,7 +18,7 @@ typedef enum {
     MUS_OPUS
 } Mix_MusicType;
 */
-type MusicType m.Int
+type MusicType = m.Int
 
 const (
 	MUS_NONE           = MusicType(0)
