@@ -185,128 +185,52 @@ const (
 	HINT_TRACKPAD_IS_TOUCH_ONLY                   = "SDL_TRACKPAD_IS_TOUCH_ONLY"
 )
 
-// SetHintWithPriority
-/*
-SDL_bool SDL_SetHintWithPriority(const char *name,
-                                 const char *value,
-                                 SDL_HintPriority priority);
-*/
-// https://wiki.libsdl.org/SDL2/SDL_SetHintWithPriority
-func SetHintWithPriority(name string, value string, priority m.HintPriority) (ok bool) {
-	var err error
-	var cpName *byte
-	cpName, err = windows.BytePtrFromString(name)
-	mustBeNoError(err)
-	var cpValue *byte
-	cpValue, err = windows.BytePtrFromString(value)
-	mustBeNoError(err)
-
-	ret, _, _ := syscall.SyscallN(fnSetHintWithPriority, uintptr(unsafe.Pointer(cpName)), uintptr(unsafe.Pointer(cpValue)), uintptr(priority))
-	return m.BoolFromUintptr(ret)
+//extern DECLSPEC SDL_bool SDLCALL SDL_SetHintWithPriority(const char *name, const char *value, SDL_HintPriority priority);
+func SetHintWithPriority(name string, value string, priority m.HintPriority) m.Bool {
+	ret, _, _ := syscall.SyscallN(fnSetHintWithPriority, uintptr(unsafe.Pointer(BytePtrFromStringP(name))), uintptr(unsafe.Pointer(BytePtrFromStringP(value))), uintptr(priority))
+	return (m.Bool)(ret)
 }
 
-// SetHint
-/*
-SDL_bool SDL_SetHint(const char *name,
-                     const char *value);
-*/
-// https://wiki.libsdl.org/SDL2/SDL_SetHint
-func SetHint(name string, value string) bool {
-	var err error
-	var cpName *byte
-	cpName, err = windows.BytePtrFromString(name)
-	mustBeNoError(err)
-	var cpValue *byte
-	cpValue, err = windows.BytePtrFromString(value)
-	mustBeNoError(err)
-
-	ret, _, _ := syscall.SyscallN(fnSetHint, uintptr(unsafe.Pointer(cpName)), uintptr(unsafe.Pointer(cpValue)))
-	return m.BoolFromUintptr(ret)
+//extern DECLSPEC SDL_bool SDLCALL SDL_SetHint(const char *name, const char *value);
+func SetHint(name string, value string) m.Bool {
+	ret, _, _ := syscall.SyscallN(fnSetHint, uintptr(unsafe.Pointer(BytePtrFromStringP(name))), uintptr(unsafe.Pointer(BytePtrFromStringP(value))))
+	return (m.Bool)(ret)
 }
 
-// ResetHint
-// SDL_bool SDL_ResetHint(const char *name);
-// https://wiki.libsdl.org/SDL2/SDL_ResetHint
-func ResetHint(name string) bool {
-	var err error
-	var cpName *byte
-	cpName, err = windows.BytePtrFromString(name)
-	mustBeNoError(err)
-
-	ret, _, _ := syscall.SyscallN(fnResetHint, uintptr(unsafe.Pointer(cpName)))
-	return m.BoolFromUintptr(ret)
+//extern DECLSPEC SDL_bool SDLCALL SDL_ResetHint(const char *name);
+func ResetHint(name string) m.Bool {
+	ret, _, _ := syscall.SyscallN(fnResetHint, uintptr(unsafe.Pointer(BytePtrFromStringP(name))))
+	return (m.Bool)(ret)
 }
 
-// ResetHints
-// void SDL_ResetHints(void);
-// https://wiki.libsdl.org/SDL2/SDL_ResetHints
+//extern DECLSPEC void SDLCALL SDL_ResetHints(void);
 func ResetHints() {
 	_, _, _ = syscall.SyscallN(fnResetHints)
 }
 
-// GetHint
-// const char * SDL_GetHint(const char *name);
-// https://wiki.libsdl.org/SDL2/SDL_GetHint
+//extern DECLSPEC const char * SDLCALL SDL_GetHint(const char *name);
 func GetHint(name string) string {
-	var err error
-	var cpName *byte
-	cpName, err = windows.BytePtrFromString(name)
-	mustBeNoError(err)
-
-	ret, _, _ := syscall.SyscallN(fnGetHint, uintptr(unsafe.Pointer(cpName)))
+	ret, _, _ := syscall.SyscallN(fnGetHint, uintptr(unsafe.Pointer(BytePtrFromStringP(name))))
 	return windows.BytePtrToString((*byte)(unsafe.Pointer(ret)))
 }
 
-// GetHintBoolean
-// SDL_bool SDL_GetHintBoolean(const char *name, SDL_bool default_value);
-// https://wiki.libsdl.org/SDL2/SDL_GetHintBoolean
-func GetHintBoolean(name string, defaultValue bool) bool {
-	var err error
-	var cpName *byte
-	cpName, err = windows.BytePtrFromString(name)
-	mustBeNoError(err)
-
-	ret, _, _ := syscall.SyscallN(fnGetHintBoolean, uintptr(unsafe.Pointer(cpName)), m.BoolToUintptr(defaultValue))
-	return m.BoolFromUintptr(ret)
+//extern DECLSPEC SDL_bool SDLCALL SDL_GetHintBoolean(const char *name, SDL_bool default_value);
+func GetHintBoolean(name string, default_value m.Bool) m.Bool {
+	ret, _, _ := syscall.SyscallN(fnGetHintBoolean, uintptr(unsafe.Pointer(BytePtrFromStringP(name))), uintptr(default_value))
+	return (m.Bool)(ret)
 }
 
-// AddHintCallback
-/*
-void SDL_AddHintCallback(const char *name,
-                         SDL_HintCallback callback,
-                         void *userdata);
-*/
-// https://wiki.libsdl.org/SDL2/SDL_AddHintCallback
-//TODO: Test this when callbacks are fixed in Golang.
-func AddHintCallback(name string, callback uintptr, userdata *m.Void) {
-	var err error
-	var cpName *byte
-	cpName, err = windows.BytePtrFromString(name)
-	mustBeNoError(err)
-
-	_, _, _ = syscall.SyscallN(fnAddHintCallback, uintptr(unsafe.Pointer(cpName)), callback, uintptr(unsafe.Pointer(userdata)))
+//extern DECLSPEC void SDLCALL SDL_AddHintCallback(const char *name, SDL_HintCallback callback, void *userdata);
+func AddHintCallback(name string, callback m.HintCallback, userdata *m.Void) {
+	_, _, _ = syscall.SyscallN(fnAddHintCallback, uintptr(unsafe.Pointer(BytePtrFromStringP(name))), uintptr(unsafe.Pointer(callback)), uintptr(unsafe.Pointer(userdata)))
 }
 
-// DelHintCallback
-/*
-void SDL_DelHintCallback(const char *name,
-                         SDL_HintCallback callback,
-                         void *userdata);
-*/
-// https://wiki.libsdl.org/SDL2/SDL_DelHintCallback
-//TODO: Test this when callbacks are fixed in Golang.
-func DelHintCallback(name string, callback uintptr, userdata *m.Void) {
-	var err error
-	var cpName *byte
-	cpName, err = windows.BytePtrFromString(name)
-	mustBeNoError(err)
-
-	_, _, _ = syscall.SyscallN(fnDelHintCallback, uintptr(unsafe.Pointer(cpName)), callback, uintptr(unsafe.Pointer(userdata)))
+//extern DECLSPEC void SDLCALL SDL_DelHintCallback(const char *name, SDL_HintCallback callback, void *userdata);
+func DelHintCallback(name string, callback m.HintCallback, userdata *m.Void) {
+	_, _, _ = syscall.SyscallN(fnDelHintCallback, uintptr(unsafe.Pointer(BytePtrFromStringP(name))), uintptr(unsafe.Pointer(callback)), uintptr(unsafe.Pointer(userdata)))
 }
 
-// ClearHints
-// void SDL_ClearHints(void);
-// https://wiki.libsdl.org/SDL2/SDL_ClearHints
+//extern DECLSPEC void SDLCALL SDL_ClearHints(void);
 func ClearHints() {
 	_, _, _ = syscall.SyscallN(fnClearHints)
 }

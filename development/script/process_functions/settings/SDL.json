@@ -32,19 +32,21 @@
     ["float", "m.Float"],
     ["double", "m.Double"],
     ["size_t", "m.SizeT"],
-    ["SDL_bool", "m.Bool"],
     ["SDL_AssertData", "m.AssertData"],
     ["SDL_AssertData*", "*m.AssertData"],
     ["SDL_AssertionHandler", "m.AssertionHandler"],
     ["SDL_AssertState", "m.AssertState"],
     ["SDL_AudioFormat", "m.AudioFormat"],
-    ["SDL_version*", "*m.Version"],
     ["SDL_AudioSpec*", "*m.AudioSpec"],
     ["SDL_AudioDeviceID", "m.AudioDeviceID"],
     ["SDL_AudioStatus", "m.AudioStatus"],
     ["SDL_AudioCVT*", "*m.AudioCVT"],
     ["SDL_AudioStream*", "*m.AudioStream"],
+    ["SDL_bool", "m.Bool"],
     ["SDL_errorcode", "m.Errorcode"],
-    ["SDL_RWops*", "*m.RWops"]
+    ["SDL_HintPriority", "m.HintPriority"],
+    ["SDL_HintCallback", "m.HintCallback"],
+    ["SDL_RWops*", "*m.RWops"],
+    ["SDL_version*", "*m.Version"]
   ]
 }
