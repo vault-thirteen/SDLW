@@ -106,6 +106,13 @@ var funcs = []dll.FuncMapping{
 	{&fnGetTimidityCfg, "GetTimidityCfg"},
 	{&fnGetChunk, "GetChunk"},
 	{&fnCloseAudio, "CloseAudio"},
+
+	// Manually added functions.
+	{&fnSetPostMix, "SetPostMix"},
+	{&fnHookMusic, "HookMusic"},
+	{&fnHookMusicFinished, "HookMusicFinished"},
+	{&fnChannelFinished, "ChannelFinished"},
+	{&fnEachSoundFont, "EachSoundFont"},
 }
 
 var (
@@ -200,6 +207,13 @@ var (
 	fnGetTimidityCfg         uintptr
 	fnGetChunk               uintptr
 	fnCloseAudio             uintptr
+
+	// Manually added functions.
+	fnSetPostMix        uintptr
+	fnHookMusic         uintptr
+	fnHookMusicFinished uintptr
+	fnChannelFinished   uintptr
+	fnEachSoundFont     uintptr
 )
 
 var (

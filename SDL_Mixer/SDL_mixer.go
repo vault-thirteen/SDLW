@@ -17,6 +17,36 @@ const (
 	DEFAULT_CHANNELS  = 2
 )
 
+/* Manually added functions */
+
+// extern DECLSPEC void SDLCALL Mix_SetPostMix(void (SDLCALL *mix_func)(void *udata, Uint8 *stream, int len), void *arg);
+func SetPostMix(mix_func mm.MixFunc, arg *m.Void) {
+	_, _, _ = syscall.SyscallN(fnSetPostMix, uintptr(unsafe.Pointer(mix_func)), uintptr(unsafe.Pointer(arg)))
+}
+
+// extern DECLSPEC void SDLCALL Mix_HookMusic(void (SDLCALL *mix_func)(void *udata, Uint8 *stream, int len), void *arg);
+func HookMusic(mix_func mm.MixFunc, arg *m.Void) {
+	_, _, _ = syscall.SyscallN(fnHookMusic, uintptr(unsafe.Pointer(mix_func)), uintptr(unsafe.Pointer(arg)))
+}
+
+// extern DECLSPEC void SDLCALL Mix_HookMusicFinished(void (SDLCALL *music_finished)(void));
+func HookMusicFinished(music_finished mm.MusicFinished) {
+	_, _, _ = syscall.SyscallN(fnHookMusicFinished, uintptr(unsafe.Pointer(music_finished)))
+}
+
+// extern DECLSPEC void SDLCALL Mix_ChannelFinished(void (SDLCALL *channel_finished)(int channel));
+func ChannelFinished(channel_finished mm.ChannelFinished) {
+	_, _, _ = syscall.SyscallN(fnChannelFinished, uintptr(unsafe.Pointer(channel_finished)))
+}
+
+// extern DECLSPEC int SDLCALL Mix_EachSoundFont(int (SDLCALL *function)(const char*, void*), void *data);
+func EachSoundFont(function mm.Function, data *m.Void) m.Int {
+	ret, _, _ := syscall.SyscallN(fnEachSoundFont, uintptr(unsafe.Pointer(function)), uintptr(unsafe.Pointer(data)))
+	return m.Int(ret)
+}
+
+/* Automatically added functions */
+
 //extern DECLSPEC const SDL_version * SDLCALL Mix_Linked_Version(void);
 func Linked_Version() *m.Version {
 	ret, _, _ := syscall.SyscallN(fnLinked_Version)
