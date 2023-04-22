@@ -2,46 +2,37 @@ package sdl
 
 // SDL_assert.h.
 
-import "syscall"
+import (
+	"syscall"
+	"unsafe"
 
-// SetAssertionHandler
-/*
-void SDL_SetAssertionHandler(
-                    SDL_AssertionHandler handler,
-                    void *userdata);
-*/
-// https://wiki.libsdl.org/SDL2/SDL_SetAssertionHandler
-func SetAssertionHandler(handler uintptr, userdata uintptr) {
-	_, _, _ = syscall.SyscallN(fnSetAssertionHandler, handler, userdata)
+	m "github.com/vault-thirteen/SDLW/SDL/model"
+)
+
+//extern DECLSPEC void SDLCALL SDL_SetAssertionHandler(SDL_AssertionHandler handler, void *userdata);
+func SetAssertionHandler(handler uintptr, userdata *m.Void) {
+	_, _, _ = syscall.SyscallN(fnSetAssertionHandler, handler, uintptr(unsafe.Pointer(userdata)))
 }
 
-// GetDefaultAssertionHandler
-// SDL_AssertionHandler SDL_GetDefaultAssertionHandler(void);
-// https://wiki.libsdl.org/SDL2/SDL_GetDefaultAssertionHandler
-func GetDefaultAssertionHandler() uintptr {
+//extern DECLSPEC SDL_AssertionHandler SDLCALL SDL_GetDefaultAssertionHandler(void);
+func GetDefaultAssertionHandler() m.AssertionHandler {
 	ret, _, _ := syscall.SyscallN(fnGetDefaultAssertionHandler)
-	return ret
+	return (m.AssertionHandler)(unsafe.Pointer(ret))
 }
 
-// GetAssertionHandler
-// SDL_AssertionHandler SDL_GetAssertionHandler(void **puserdata);
-// https://wiki.libsdl.org/SDL2/SDL_GetAssertionHandler
-func GetAssertionHandler(puserdata uintptr) uintptr {
-	ret, _, _ := syscall.SyscallN(fnGetAssertionHandler, puserdata)
-	return ret
+//extern DECLSPEC SDL_AssertionHandler SDLCALL SDL_GetAssertionHandler(void **puserdata);
+func GetAssertionHandler(puserdata **m.Void) m.AssertionHandler {
+	ret, _, _ := syscall.SyscallN(fnGetAssertionHandler, uintptr(unsafe.Pointer(puserdata)))
+	return (m.AssertionHandler)(unsafe.Pointer(ret))
 }
 
-// GetAssertionReport
-// const SDL_AssertData * SDL_GetAssertionReport(void);
-// https://wiki.libsdl.org/SDL2/SDL_GetAssertionReport
-func GetAssertionReport() uintptr {
+//extern DECLSPEC const SDL_AssertData * SDLCALL SDL_GetAssertionReport(void);
+func GetAssertionReport() *m.AssertData {
 	ret, _, _ := syscall.SyscallN(fnGetAssertionReport)
-	return ret
+	return (*m.AssertData)(unsafe.Pointer(ret))
 }
 
-// ResetAssertionReport
-// void SDL_ResetAssertionReport(void);
-// https://wiki.libsdl.org/SDL2/SDL_ResetAssertionReport
+//extern DECLSPEC void SDLCALL SDL_ResetAssertionReport(void);
 func ResetAssertionReport() {
 	_, _, _ = syscall.SyscallN(fnResetAssertionReport)
 }

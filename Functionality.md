@@ -237,10 +237,16 @@
 <!-- -->
         <tr>
             <td align="center">&#9744;</td>
-            <td rowspan=6 valign="top">Assertions</td>
+            <td rowspan=7 valign="top">Assertions</td>
             <td>SDL_assert</td>
             <td>SDL_assert.h</td>
             <td>Macro. Not available in Go.</td>
+        </tr>
+        <tr>
+            <td align="center">&#9744;</td>
+            <td>SDL_ReportAssertion</td>
+            <td>SDL_assert.h</td>
+            <td>Never call this directly.</td>
         </tr>
         <tr>
             <td align="center">&#9746;</td>

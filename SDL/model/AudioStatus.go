@@ -1,6 +1,6 @@
 package m
 
-type AudioStatus Int
+type AudioStatus = Int
 
 const (
 	AUDIO_STOPPED = AudioStatus(0)

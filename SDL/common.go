@@ -53,6 +53,7 @@ var funcs = []dll.FuncMapping{
 	{&fnLogSetOutputFunction, "LogSetOutputFunction"},
 
 	// Assertions.
+	{&fnReportAssertion, "ReportAssertion"},
 	{&fnSetAssertionHandler, "SetAssertionHandler"},
 	{&fnGetDefaultAssertionHandler, "GetDefaultAssertionHandler"},
 	{&fnGetAssertionHandler, "GetAssertionHandler"},
@@ -153,6 +154,7 @@ var (
 	fnLogSetOutputFunction uintptr
 
 	// Assertions.
+	fnReportAssertion            uintptr
 	fnSetAssertionHandler        uintptr
 	fnGetDefaultAssertionHandler uintptr
 	fnGetAssertionHandler        uintptr

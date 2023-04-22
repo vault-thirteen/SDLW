@@ -1,6 +1,6 @@
 package m
 
-type HintPriority Int
+type HintPriority = Int
 
 const (
 	HINT_DEFAULT  = HintPriority(0)
