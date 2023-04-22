@@ -33,7 +33,9 @@ var funcs = []dll.FuncMapping{
 	// Error Handling.
 	{&fnClearError, "ClearError"},
 	{&fnGetError, "GetError"},
+	{&fnGetErrorMsg, "GetErrorMsg"},
 	{&fnSetError, "SetError"},
+	{&fnError, "Error"},
 
 	// Log Handling.
 	{&fnLogSetAllPriority, "LogSetAllPriority"},
@@ -132,9 +134,11 @@ var (
 	fnClearHints          uintptr
 
 	// Error Handling.
-	fnClearError uintptr
-	fnGetError   uintptr
-	fnSetError   uintptr
+	fnClearError  uintptr
+	fnGetError    uintptr
+	fnGetErrorMsg uintptr
+	fnSetError    uintptr
+	fnError       uintptr
 
 	// Log Handling.
 	fnLogSetAllPriority    uintptr

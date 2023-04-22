@@ -44,6 +44,7 @@
     ["SDL_AudioStatus", "m.AudioStatus"],
     ["SDL_AudioCVT*", "*m.AudioCVT"],
     ["SDL_AudioStream*", "*m.AudioStream"],
+    ["SDL_errorcode", "m.Errorcode"],
     ["SDL_RWops*", "*m.RWops"]
   ]
 }
