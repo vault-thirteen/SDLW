@@ -3,7 +3,8 @@
     "extern",
     "const",
     "DECLSPEC",
-    "SDLCALL"
+    "SDLCALL",
+    "SDL_DEPRECATED"
   ],
   "func_name_prefix": "SDL_",
   "c_to_go_type_mapping": [
