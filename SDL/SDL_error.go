@@ -43,6 +43,8 @@ func SetError(errFormat string, args ...uintptr) {
 	_, _, _ = syscall.SyscallN(fnSetError, argz...)
 }
 
+/* Automatically added functions */
+
 //extern DECLSPEC char * SDLCALL SDL_GetErrorMsg(char *errstr, int maxlen);
 func GetErrorMsg(errstr string, maxlen m.Int) string {
 	ret, _, _ := syscall.SyscallN(fnGetErrorMsg, uintptr(unsafe.Pointer(BytePtrFromStringP(errstr))), uintptr(maxlen))
