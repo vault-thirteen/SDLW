@@ -18,38 +18,6 @@ const (
 	AUDIO_MASK_SIGNED   = m.Uint16(1 << 15)
 )
 
-// Audio format flags.
-const (
-	AUDIO_S8 = 0x8008
-	AUDIO_U8 = 0x0008
-
-	AUDIO_S16LSB = 0x8010
-	AUDIO_U16LSB = 0x0010
-	AUDIO_S16MSB = 0x9010
-	AUDIO_U16MSB = 0x1010
-	AUDIO_S16    = AUDIO_S16LSB
-	AUDIO_U16    = AUDIO_U16LSB
-
-	// Integer Samples.
-	AUDIO_S32LSB = 0x8020
-	AUDIO_S32MSB = 0x9020
-	AUDIO_S32    = AUDIO_S32LSB
-
-	// Float Samples.
-	AUDIO_F32LSB = 0x8120
-	AUDIO_F32MSB = 0x9120
-	AUDIO_F32    = AUDIO_F32LSB
-)
-
-// Which audio format changes are allowed when opening a device.
-const (
-	AUDIO_ALLOW_FREQUENCY_CHANGE = 0x00000001
-	AUDIO_ALLOW_FORMAT_CHANGE    = 0x00000002
-	AUDIO_ALLOW_CHANNELS_CHANGE  = 0x00000004
-	AUDIO_ALLOW_SAMPLES_CHANGE   = 0x00000008
-	AUDIO_ALLOW_ANY_CHANGE       = AUDIO_ALLOW_FREQUENCY_CHANGE | AUDIO_ALLOW_FORMAT_CHANGE | AUDIO_ALLOW_CHANNELS_CHANGE | AUDIO_ALLOW_SAMPLES_CHANGE
-)
-
 func AUDIO_BITSIZE(x m.Uint16) m.Uint16 {
 	return x & AUDIO_MASK_BITSIZE
 }
@@ -62,6 +30,63 @@ func AUDIO_ISBIGENDIAN(x m.Uint16) m.Uint16 {
 func AUDIO_ISSIGNED(x m.Uint16) m.Uint16 {
 	return x & AUDIO_MASK_SIGNED
 }
+
+// Audio format flags.
+const (
+	AUDIO_U8     = 0x0008
+	AUDIO_S8     = 0x8008
+	AUDIO_U16LSB = 0x0010
+	AUDIO_S16LSB = 0x8010
+	AUDIO_U16MSB = 0x1010
+	AUDIO_S16MSB = 0x9010
+	AUDIO_S16    = AUDIO_S16LSB
+	AUDIO_U16    = AUDIO_U16LSB
+
+	// Integer Samples.
+	AUDIO_S32LSB = 0x8020
+	AUDIO_S32MSB = 0x9020
+	AUDIO_S32    = AUDIO_S32LSB
+
+	// Float Samples.
+	AUDIO_F32LSB = 0x8120
+	AUDIO_F32MSB = 0x9120
+	AUDIO_F32    = AUDIO_F32LSB
+
+	MIX_MAXVOLUME = 128
+)
+
+// Which audio format changes are allowed when opening a device.
+const (
+	AUDIO_ALLOW_FREQUENCY_CHANGE = 0x00000001
+	AUDIO_ALLOW_FORMAT_CHANGE    = 0x00000002
+	AUDIO_ALLOW_CHANNELS_CHANGE  = 0x00000004
+	AUDIO_ALLOW_SAMPLES_CHANGE   = 0x00000008
+	AUDIO_ALLOW_ANY_CHANGE       = AUDIO_ALLOW_FREQUENCY_CHANGE | AUDIO_ALLOW_FORMAT_CHANGE | AUDIO_ALLOW_CHANNELS_CHANGE | AUDIO_ALLOW_SAMPLES_CHANGE
+)
+
+/* Manually added functions */
+
+// LoadWAV
+/*
+SDL_AudioSpec* SDL_LoadWAV(const char*    file,
+                           SDL_AudioSpec* spec,
+                           Uint8**        audio_buf,
+                           Uint32*        audio_len)
+*/
+// #define SDL_LoadWAV(file, spec, audio_buf, audio_len) SDL_LoadWAV_RW(SDL_RWFromFile(file, "rb"),1, spec,audio_buf,audio_len)
+// This is a C macro. It is not directly accessible via the DLL file.
+// https://wiki.libsdl.org/SDL2/SDL_LoadWAV
+func LoadWAV(file string, spec *m.AudioSpec, audioBuf **m.Uint8, audioLen *m.Uint32) *m.AudioSpec {
+	ops := RWFromFile(file, "rb")
+	if ops == nil {
+		panic(ops)
+	}
+
+	ret, _, _ := syscall.SyscallN(fnLoadWAV_RW, uintptr(unsafe.Pointer(ops)), 0, uintptr(unsafe.Pointer(spec)), uintptr(unsafe.Pointer(audioBuf)), uintptr(unsafe.Pointer(audioLen)))
+	return (*m.AudioSpec)(unsafe.Pointer(ret))
+}
+
+/* Automatically added functions */
 
 // GetNumAudioDrivers
 // int SDL_GetNumAudioDrivers(void);
@@ -228,28 +253,6 @@ func LoadWAV_RW(src uintptr, freeSrc m.Int, spec *m.AudioSpec, audioBuf **m.Uint
 	return (*m.AudioSpec)(unsafe.Pointer(ret))
 }
 
-// LoadWAV
-/*
-SDL_AudioSpec* SDL_LoadWAV(const char*    file,
-                           SDL_AudioSpec* spec,
-                           Uint8**        audio_buf,
-                           Uint32*        audio_len)
-*/
-// https://wiki.libsdl.org/SDL2/SDL_LoadWAV
-func LoadWAV(file string, spec *m.AudioSpec, audioBuf **m.Uint8, audioLen *m.Uint32) *m.AudioSpec {
-	// #define SDL_LoadWAV(file, spec, audio_buf, audio_len) SDL_LoadWAV_RW(SDL_RWFromFile(file, "rb"),1, spec,audio_buf,audio_len)
-	// This is a C macro.
-	// This means, it is not directly accessible via the DLL file !
-
-	ops := RWFromFile(file, "rb")
-	if ops == nil {
-		panic(ops)
-	}
-
-	ret, _, _ := syscall.SyscallN(fnLoadWAV_RW, uintptr(unsafe.Pointer(ops)), 0, uintptr(unsafe.Pointer(spec)), uintptr(unsafe.Pointer(audioBuf)), uintptr(unsafe.Pointer(audioLen)))
-	return (*m.AudioSpec)(unsafe.Pointer(ret))
-}
-
 // FreeWAV
 // void SDL_FreeWAV(Uint8 * audio_buf);
 // https://wiki.libsdl.org/SDL2/SDL_FreeWAV
@@ -341,8 +344,6 @@ func AudioStreamClear(stream *m.AudioStream) {
 func FreeAudioStream(stream *m.AudioStream) {
 	_, _, _ = syscall.SyscallN(fnFreeAudioStream, uintptr(unsafe.Pointer(stream)))
 }
-
-const MIX_MAXVOLUME = 128
 
 // MixAudio
 /*
