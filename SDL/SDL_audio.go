@@ -242,11 +242,11 @@ func LoadWAV(file string, spec *m.AudioSpec, audioBuf **m.Uint8, audioLen *m.Uin
 	// This means, it is not directly accessible via the DLL file !
 
 	ops := RWFromFile(file, "rb")
-	if ops == 0 {
+	if ops == nil {
 		panic(ops)
 	}
 
-	ret, _, _ := syscall.SyscallN(fnLoadWAV_RW, ops, 0, uintptr(unsafe.Pointer(spec)), uintptr(unsafe.Pointer(audioBuf)), uintptr(unsafe.Pointer(audioLen)))
+	ret, _, _ := syscall.SyscallN(fnLoadWAV_RW, uintptr(unsafe.Pointer(ops)), 0, uintptr(unsafe.Pointer(spec)), uintptr(unsafe.Pointer(audioBuf)), uintptr(unsafe.Pointer(audioLen)))
 	return (*m.AudioSpec)(unsafe.Pointer(ret))
 }
 

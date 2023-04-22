@@ -6,6 +6,7 @@ import (
 	"syscall"
 	"unsafe"
 
+	m "github.com/vault-thirteen/SDLW/SDL/model"
 	"golang.org/x/sys/windows"
 )
 
@@ -15,7 +16,7 @@ SDL_RWops* SDL_RWFromFile(const char *file,
                           const char *mode);
 */
 // https://wiki.libsdl.org/SDL2/SDL_RWFromFile
-func RWFromFile(file string, mode string) uintptr {
+func RWFromFile(file string, mode string) *m.RWops {
 	var err error
 	var cpFile *byte
 	cpFile, err = windows.BytePtrFromString(file)
@@ -25,5 +26,5 @@ func RWFromFile(file string, mode string) uintptr {
 	mustBeNoError(err)
 
 	ret, _, _ := syscall.SyscallN(fnRWFromFile, uintptr(unsafe.Pointer(cpFile)), uintptr(unsafe.Pointer(cpMode)))
-	return ret
+	return (*m.RWops)(unsafe.Pointer(ret))
 }
