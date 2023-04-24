@@ -111,7 +111,7 @@ func playSound(device *audio.Device) (err error) {
 	}
 	sdl.PauseAudioDevice(deviceId, 0)
 
-	duration := audio.Duration(wavSpec, wavLength)
+	duration := audio.DurationOfAudio(wavSpec, wavLength)
 	time.Sleep(duration)
 
 	return nil
@@ -144,7 +144,9 @@ func playMusic(device *audio.Device) (err error) {
 	if sdlm.PlayMusic(music, 1) != 0 {
 		return sdlm.GetError()
 	}
-	time.Sleep(time.Second * 10) //TODO
+
+	duration := audio.DurationOfMusic(music)
+	time.Sleep(duration)
 
 	return nil
 }

@@ -5,6 +5,8 @@ import (
 
 	"github.com/vault-thirteen/SDLW/SDL"
 	m "github.com/vault-thirteen/SDLW/SDL/model"
+	sdlm "github.com/vault-thirteen/SDLW/SDL_Mixer"
+	mm "github.com/vault-thirteen/SDLW/SDL_Mixer/model"
 )
 
 // GetInfo collects information about audio subsystem.
@@ -74,8 +76,8 @@ func getDeviceInfo(index m.Int, devMode m.Int) (dev *Device, err error) {
 	}, nil
 }
 
-// Duration gets the duration of audio.
-func Duration(as m.AudioSpec, len m.Uint32) time.Duration {
+// DurationOfAudio returns duration of audio.
+func DurationOfAudio(as m.AudioSpec, len m.Uint32) time.Duration {
 	var sampleSize m.Uint32 = m.Uint32(sdl.AUDIO_BITSIZE(m.Uint16(as.Format))) / 8
 	var sampleCount m.Uint32 = len / sampleSize
 	var sampleLen m.Uint32
@@ -86,4 +88,14 @@ func Duration(as m.AudioSpec, len m.Uint32) time.Duration {
 	}
 	var seconds = m.Double(sampleLen) / m.Double(as.Freq)
 	return time.Duration(m.Double(time.Second) * seconds)
+}
+
+// DurationOfMusic returns duration of music.
+func DurationOfMusic(music *mm.Music) time.Duration {
+	// SDL library returns -1 length in C code and 0 in Go code.
+	// What does it mean ?
+	// 1. SDL library does not know how to get duration of MPEG Layer 3 format.
+	// 2. Go language sucks.
+	dur := sdlm.GetMusicLoopLengthTime(music)
+	return time.Duration(m.Double(time.Second) * dur)
 }
