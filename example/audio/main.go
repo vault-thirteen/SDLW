@@ -148,5 +148,7 @@ func playMusic(device *audio.Device) (err error) {
 	duration := audio.DurationOfMusic(music)
 	time.Sleep(duration)
 
+	sdlm.Test(filePath) // TODO: Achtung!
+
 	return nil
 }

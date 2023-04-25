@@ -3,6 +3,7 @@ package sdlm
 // SDL_mixer.h.
 
 import (
+	"fmt"
 	"syscall"
 	"unsafe"
 
@@ -16,6 +17,30 @@ const (
 	DEFAULT_FREQUENCY = 44100
 	DEFAULT_CHANNELS  = 2
 )
+
+/* Experimental code */
+
+// Test
+// This tests shows that Golang is a 'komplete Scheiße'. What does that mean ?
+// Here we are using system calls without any type casts. We use pointers
+// returned by a DLL library directly, i.e. we use pointers returned by C code,
+// and we do not type cast them into Go pointers except one thing. We are using
+// the Go's `uintptr` type, because system calls use them, and we have no other
+// choice other than this. Well, this very simple experiment shows that a
+// pointer to Mix_Music type is not NULL according to the non-zero printed
+// value. What happens next ? This pointer is given to another DLL function.
+// In C code this function returns a positive value of 503, but in Golang it
+// returns zero (0). What does it mean ? Golang is a 'komplete Scheiße'.
+// I and will not create an issue on Golang's GitHub page because they will say
+// as they usually do that they are great and we are nothing. This small
+// example shows how "great" is Golang in reality.
+// Golang ist komplete Scheiße. Das stimmt.
+func Test(filePath string) {
+	music, _, _ := syscall.SyscallN(fnLoadMUS, uintptr(unsafe.Pointer(BytePtrFromStringP(filePath))))
+	fmt.Println("music:", music)
+	duration, _, _ := syscall.SyscallN(fnMusicDuration, music)
+	fmt.Println("duration:", duration)
+}
 
 /* Manually added functions */
 

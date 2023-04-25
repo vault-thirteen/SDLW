@@ -95,7 +95,8 @@ func DurationOfMusic(music *mm.Music) time.Duration {
 	// SDL library returns -1 length in C code and 0 in Go code.
 	// What does it mean ?
 	// 1. SDL library does not know how to get duration of MPEG Layer 3 format.
-	// 2. Go language sucks.
-	dur := sdlm.GetMusicLoopLengthTime(music)
+	// 2. Golang ist komplete Scheiße. Das stimmt.
+	// See the 'Test' function to get more information.
+	dur := sdlm.MusicDuration(music)
 	return time.Duration(m.Double(time.Second) * dur)
 }
