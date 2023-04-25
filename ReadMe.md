@@ -7,12 +7,12 @@ library much easier.
 
 **Notes**
 
-* This project is a work in progress.  
-  * The code is not finished and may periodically get updates.
+* This project is frozen due to critical bugs in Go language.  
+  * More information can be found in comments to the `Test` function.
 
 
 * This project uses system calls.
-  * CGO does not work properly on Windows O.S.;
+  * CGO does not work properly on Windows O.S.
   * CGO is slower than system calls in Golang.
 
 ## SDL 2.0 API by Category
