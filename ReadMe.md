@@ -7,8 +7,8 @@ library much easier.
 
 **Notes**
 
-* This project is frozen due to critical bugs in Go language.  
-  * More information can be found in comments to the `Test` function.
+* This project is frozen due to bugs in Go language and SDL library.
+  * More information can be found in comments to the `Test` function and C tests.
 
 
 * This project uses system calls.
