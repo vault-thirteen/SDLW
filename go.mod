@@ -5,5 +5,5 @@ go 1.20
 require (
 	github.com/vault-thirteen/auxie v0.13.0
 	github.com/vault-thirteen/errorz v1.2.0
-	golang.org/x/sys v0.12.0
+	golang.org/x/sys v0.13.0
 )
