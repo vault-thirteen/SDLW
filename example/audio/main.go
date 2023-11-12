@@ -134,7 +134,8 @@ func playMusic(device *audio.Device) (err error) {
 	defer sdl.CloseAudio()
 
 	// Load an MP3 file.
-	filePath := `D:\Temp\1\music.mp3`
+	// External file. Copy it before starting the example.
+	filePath := `Music.mp3`
 	music := sdlm.LoadMUS(filePath)
 	if music == nil {
 		return sdlm.GetError()
@@ -148,7 +149,7 @@ func playMusic(device *audio.Device) (err error) {
 	duration := audio.DurationOfMusic(music)
 	time.Sleep(duration)
 
-	sdlm.Test(filePath) // TODO: Achtung!
+	sdlm.Test(filePath) // This shit does not work.
 
 	return nil
 }
