@@ -7,7 +7,7 @@ import (
 
 	"github.com/vault-thirteen/SDLW/development/pp"
 	"github.com/vault-thirteen/SDLW/development/pp/models"
-	"github.com/vault-thirteen/errorz"
+	ae "github.com/vault-thirteen/auxie/errors"
 )
 
 func mustBeNoError(err error) {
@@ -25,7 +25,7 @@ func readSettings(filePath string) (fps *models.FuncProcessorSettings, err error
 	defer func() {
 		derr := f.Close()
 		if derr != nil {
-			err = errorz.Combine(err, derr)
+			err = ae.Combine(err, derr)
 		}
 	}()
 

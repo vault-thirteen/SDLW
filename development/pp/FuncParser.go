@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/vault-thirteen/SDLW/development/pp/models"
+	ae "github.com/vault-thirteen/auxie/errors"
 	"github.com/vault-thirteen/auxie/reader"
-	"github.com/vault-thirteen/errorz"
 )
 
 // FuncParser is a C function parser.
@@ -48,7 +48,7 @@ func (fp *FuncParser) ParseCFunctions(filePath string) (funcData []*models.FuncD
 	defer func() {
 		derr := f.Close()
 		if derr != nil {
-			err = errorz.Combine(err, derr)
+			err = ae.Combine(err, derr)
 		}
 	}()
 
